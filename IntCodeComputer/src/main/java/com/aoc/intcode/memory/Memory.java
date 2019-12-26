@@ -13,6 +13,7 @@ import java.util.Queue;
 public class Memory {
 
     private List<Integer> memory;
+    private int pointer = 0;
     private final Queue<Integer> inputs = new LinkedList<>();
     private final List<Integer> outputs = new LinkedList<>();
 
@@ -22,6 +23,25 @@ public class Memory {
 
     public List<Integer> getCurrentState(){
         return new ArrayList<>(memory);
+    }
+
+    public int getPointerAddress(){
+        return this.pointer;
+    }
+
+    public void incrementAddress(int steps){
+        this.pointer += steps;
+    }
+
+    public void setPointerAddress(int newAddress){
+        if(newAddress<0) {
+            throw new IllegalArgumentException("Invalid pointer: "+ newAddress);
+        }
+        this.pointer = newAddress;
+
+    }
+    public boolean isEndOfMemory(){
+        return this.pointer>=this.memory.size();
     }
 
     public Integer getValueAtAddress(int address){

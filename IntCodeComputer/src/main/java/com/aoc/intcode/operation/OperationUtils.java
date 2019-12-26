@@ -1,5 +1,12 @@
 package com.aoc.intcode.operation;
 
+import com.aoc.intcode.memory.Instruction;
+import com.aoc.intcode.memory.Memory;
+import com.aoc.intcode.operation.codes.AdditionOperation;
+import com.aoc.intcode.operation.codes.InputOperation;
+import com.aoc.intcode.operation.codes.MultiplicationOperation;
+import com.aoc.intcode.operation.codes.OutputOperation;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,18 +26,16 @@ public class OperationUtils {
     private static Map<Integer, Operation> getOperations() {
         Map<Integer,Operation> operations = new TreeMap<>();
 
-        mapMemoryChangingOperation(operations, new AdditionOperation());
-        mapMemoryChangingOperation(operations, new MultiplicationOperation());
-        mapMemoryChangingOperation(operations, new InputOperation());
-
-        OutputOperation outputOperation = new OutputOperation();
-        operations.put(outputOperation.getOperationCode(), outputOperation);
+        wrapOperationToCheckArguments(operations, new AdditionOperation());
+        wrapOperationToCheckArguments(operations, new MultiplicationOperation());
+        wrapOperationToCheckArguments(operations, new InputOperation());
+        wrapOperationToCheckArguments(operations, new OutputOperation());
 
         return operations;
     }
 
-    private static final void mapMemoryChangingOperation(Map<Integer,Operation> operations, Operation operation){
-        MemoryChangingOperation memoryChangingOperation = new MemoryChangingOperation(operation);
+    private static final void wrapOperationToCheckArguments(Map<Integer,Operation> operations, Operation operation){
+        ArgumentCheckingOperationWrapper memoryChangingOperation = new ArgumentCheckingOperationWrapper(operation);
         operations.put(operation.getOperationCode(),memoryChangingOperation);
     }
 

@@ -1,11 +1,7 @@
-package com.aoc.intcode.operation;
+package com.aoc.intcode.memory;
 
-import com.aoc.intcode.memory.Memory;
-import com.aoc.intcode.parameter.ImmediateMode;
 import com.aoc.intcode.parameter.ParameterMode;
 import com.aoc.intcode.parameter.ParameterModeUtil;
-import com.aoc.intcode.parameter.PositionMode;
-import com.sun.istack.internal.NotNull;
 
 /**
  * An instruction gives the operation (defined by an OpCode) and the parameters

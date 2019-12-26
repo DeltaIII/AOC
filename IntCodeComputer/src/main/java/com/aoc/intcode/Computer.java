@@ -2,7 +2,7 @@ package com.aoc.intcode;
 
 import com.aoc.intcode.memory.Memory;
 import com.aoc.intcode.memory.MemoryParser;
-import com.aoc.intcode.operation.Instruction;
+import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.operation.Operation;
 import com.aoc.intcode.operation.OperationUtils;
 
@@ -19,16 +19,18 @@ import java.util.logging.Logger;
 public class Computer {
 
     private final Memory memory;
-    private final Logger logger;
+    private static Logger logger;
 
 
     private Computer(Memory memory){
         this.memory = memory;
-        this.logger =  Logger.getLogger(Computer.class.getName());
-        Handler consoleHandler = new ConsoleHandler();
-        consoleHandler.setFormatter(new MemoryStateFormatter());
-        this.logger.addHandler(consoleHandler);
-        this.logger.setUseParentHandlers(false);
+        if(logger==null) {
+            logger = Logger.getLogger(Computer.class.getName());
+            Handler consoleHandler = new ConsoleHandler();
+            consoleHandler.setFormatter(new MemoryStateFormatter());
+            logger.addHandler(consoleHandler);
+            logger.setUseParentHandlers(false);
+        }
     }
 
     public List<Integer> run(List<Integer> inputs){
@@ -47,14 +49,12 @@ public class Computer {
         logger.log(Level.INFO, "<<BEGIN>>");
         outputIndexes();
         printState(this.memory.getCurrentState());
-        int instructionPointer = 0;
-        Instruction currentInstruction = updateCurrentInstruction(instructionPointer);
-        while (!OperationUtils.isTerminationInstruction(currentInstruction) && instructionPointer<memory.size()){
+        Instruction currentInstruction = updateCurrentInstruction();
+        while (!OperationUtils.isTerminationInstruction(currentInstruction) && !memory.isEndOfMemory()){
             Operation operation = OperationUtils.getOperationForInstruction(currentInstruction);
-            operation.apply(currentInstruction, memory);
+            operation.accept(currentInstruction, memory);
             printState(this.memory.getCurrentState());
-            instructionPointer = updateInstructionPointer(instructionPointer, operation);
-            currentInstruction = updateCurrentInstruction(instructionPointer);
+            currentInstruction = updateCurrentInstruction();
         }
         logger.log(Level.INFO,"<<FINI>>");
     }
@@ -76,13 +76,9 @@ public class Computer {
 
     }
 
-    private int updateInstructionPointer(int instructionPointer, Operation operation) {
-        int numberOfIntegersParsed = operation.getNumberOfParameters()+1;
-        return instructionPointer + numberOfIntegersParsed;
-    }
 
-    private Instruction updateCurrentInstruction(int instructionPointer) {
-        return Instruction.getInstruction(instructionPointer, memory);
+    private Instruction updateCurrentInstruction() {
+        return Instruction.getInstruction(memory.getPointerAddress(), memory);
     }
 
     public List<Integer> getOutputs(){

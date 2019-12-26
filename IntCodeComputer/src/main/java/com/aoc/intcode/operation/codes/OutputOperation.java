@@ -1,10 +1,8 @@
-package com.aoc.intcode.operation;
+package com.aoc.intcode.operation.codes;
 
+import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.memory.Memory;
-import com.aoc.intcode.parameter.ImmediateMode;
-import com.aoc.intcode.parameter.PositionMode;
-
-import java.util.List;
+import com.aoc.intcode.operation.Operation;
 
 public class OutputOperation implements Operation {
 
@@ -21,9 +19,9 @@ public class OutputOperation implements Operation {
     }
 
     @Override
-    public Integer apply(Instruction instruction, Memory memory) {
+    public void accept(Instruction instruction, Memory memory) {
         Integer valueToOutput = instruction.getParameter(OUTPUT_PARAMETER_NUMBER, memory);
         memory.addToOutputs(valueToOutput);
-        return valueToOutput;
+        memory.incrementAddress(this.getNumberOfParameters()+1);
     }
 }

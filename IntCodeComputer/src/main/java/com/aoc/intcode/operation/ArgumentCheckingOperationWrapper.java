@@ -1,24 +1,22 @@
 package com.aoc.intcode.operation;
 
+import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.memory.Memory;
-import com.aoc.intcode.parameter.ImmediateMode;
 
-public class MemoryChangingOperation implements Operation {
+public class ArgumentCheckingOperationWrapper implements Operation {
 
     private final Operation operation;
 
-    MemoryChangingOperation(Operation operation){
+    ArgumentCheckingOperationWrapper(Operation operation){
         this.operation = operation;
     }
 
     @Override
-    public Integer apply(Instruction operationInstruction, Memory memory) {
+    public void accept(Instruction operationInstruction, Memory memory) {
         int instructionOpCode = operationInstruction.getOperationCode();
         if(instructionOpCode == this.getOperationCode()){
-            Integer operationResult = this.operation.apply(operationInstruction, memory);
-            int outputPointer = operationInstruction.getParameterValue(getNumberOfParameters(), memory, ImmediateMode.getInstance());
-            memory.setValueAtAddress(outputPointer, operationResult);
-            return operationResult;
+            this.operation.accept(operationInstruction, memory);
+            return;
         }
         throw new IllegalArgumentException(
                 String.format(
