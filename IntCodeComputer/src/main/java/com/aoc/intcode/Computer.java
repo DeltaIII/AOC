@@ -20,11 +20,15 @@ public class Computer {
 
     private final Memory memory;
     private static Logger logger;
+    private boolean isDebugMode = true;
 
+    public void setIsDebugMode(boolean debug) {
+        this.isDebugMode = debug;
+    }
 
     private Computer(Memory memory){
         this.memory = memory;
-        if(logger==null) {
+        if(logger==null && isDebugMode) {
             logger = Logger.getLogger(Computer.class.getName());
             Handler consoleHandler = new ConsoleHandler();
             consoleHandler.setFormatter(new MemoryStateFormatter());
@@ -47,13 +51,21 @@ public class Computer {
 
     private void runToTermination() {
         logger.log(Level.INFO, "<<BEGIN>>");
-        outputIndexes();
-        printState(this.memory.getCurrentState());
+
+        if (isDebugMode) {
+            outputIndexes();
+            printState(this.memory.getCurrentState());
+        }
+
         Instruction currentInstruction = updateCurrentInstruction();
-        while (!OperationUtils.isTerminationInstruction(currentInstruction) && !memory.isEndOfMemory()){
+        while (!OperationUtils.isTerminationInstruction(currentInstruction)){
             Operation operation = OperationUtils.getOperationForInstruction(currentInstruction);
             operation.accept(currentInstruction, memory);
-            printState(this.memory.getCurrentState());
+
+            if(isDebugMode) {
+                printState(this.memory.getCurrentState());
+            }
+
             currentInstruction = updateCurrentInstruction();
         }
         logger.log(Level.INFO,"<<FINI>>");

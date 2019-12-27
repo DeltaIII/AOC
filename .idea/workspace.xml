@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46faec31-2c1d-4bb9-bd1c-046b9434fd7b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/IncrementRelativeBaseOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/OperationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/OperationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/AdditionOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/AdditionOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/EqualsOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/EqualsOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/InputOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/InputOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/LessThanOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/LessThanOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/MultiplicationOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/MultiplicationOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/memory/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/memory/Memory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IntCodeComputer/src/test/java/com/aoc/intcode/ComputerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/IntCodeComputer/src/test/java/com/aoc/intcode/ComputerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,23 +65,8 @@
       <recent name="com.aoc.intcode.operation" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ComputerTest$DayNineTests$UpgradeTests">
-    <configuration name="ComputerTest$DayFiveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IntCodeComputer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.aoc.intcode.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.aoc.intcode" />
-      <option name="MAIN_CLASS_NAME" value="com.aoc.intcode.ComputerTest$DayFiveTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ComputerTest$DayNineTests$UpgradeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ComputerTest">
+    <configuration name="ComputerTest$DayNineTests$UpgradeTests.outputLargeNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IntCodeComputer" />
       <extension name="coverage">
         <pattern>
@@ -95,7 +76,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.aoc.intcode" />
       <option name="MAIN_CLASS_NAME" value="com.aoc.intcode.ComputerTest$DayNineTests$UpgradeTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="outputLargeNumber" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -116,7 +98,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ComputerTest$DayTwoTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ComputerTest$DayNineTests.partOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IntCodeComputer" />
       <extension name="coverage">
         <pattern>
@@ -125,8 +107,25 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.aoc.intcode" />
-      <option name="MAIN_CLASS_NAME" value="com.aoc.intcode.ComputerTest$DayTwoTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.aoc.intcode.ComputerTest$DayNineTests" />
+      <option name="METHOD_NAME" value="partOne" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ComputerTest$DayNineTests.partTwo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IntCodeComputer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aoc.intcode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aoc.intcode" />
+      <option name="MAIN_CLASS_NAME" value="com.aoc.intcode.ComputerTest$DayNineTests" />
+      <option name="METHOD_NAME" value="partTwo" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,10 +147,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ComputerTest$DayNineTests$UpgradeTests" />
         <item itemvalue="JUnit.ComputerTest" />
-        <item itemvalue="JUnit.ComputerTest$DayFiveTests" />
-        <item itemvalue="JUnit.ComputerTest$DayTwoTests" />
+        <item itemvalue="JUnit.ComputerTest$DayNineTests.partTwo" />
+        <item itemvalue="JUnit.ComputerTest$DayNineTests.partOne" />
+        <item itemvalue="JUnit.ComputerTest$DayNineTests$UpgradeTests.outputLargeNumber" />
         <item itemvalue="JUnit.ComputerTest$DayNineTests$UpgradeTests.quineExample" />
       </list>
     </recent_temporary>
@@ -218,54 +217,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="331" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1577471599418" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1577482725869">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1577485454167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1577482725869" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1577482725869">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1577485454167" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1577485454167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1577482725869" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1577482725869">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1577485454167" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1577485454167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1577482725869" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1577482725869">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1577485454167" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1577485454167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1577482725869" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1577397805506">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1577485454167" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1577484636474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1577397805506" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1577397805506">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1577484636474" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1577484636474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1577397805506" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1577397805506">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1577484636474" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1577484636474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1577397805506" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1577397805506">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1577484636474" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1577484636474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1577397805506" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1577484636474" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1577374044160">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1577374044160" />
-    <state x="584" y="346" key="ReplaceDuplicatesPrompt" timestamp="1577392279850">
+    <state x="584" y="346" key="ReplaceDuplicatesPrompt" timestamp="1577483882530">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="584" y="346" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1577392279850" />
+    <state x="584" y="346" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1577483882530" />
     <state x="540" y="130" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1577392457782">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="540" y="130" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1577392457782" />
-    <state x="499" y="181" width="538" height="498" key="extract.method.dialog" timestamp="1577482015250">
+    <state x="499" y="181" width="538" height="498" key="extract.method.dialog" timestamp="1577483896937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="181" width="538" height="498" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1577482015250" />
+    <state x="499" y="181" width="538" height="498" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1577483896937" />
     <state x="209" y="107" key="new project wizard" timestamp="1577372541941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -274,14 +273,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="475" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1577392363152" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1577396033463">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1577483037924">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1577396033463" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1577482241852">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1577483037924" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1577483724401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1577482241852" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1577483724401" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -290,6 +289,16 @@
           <url>file://$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/operation/codes/JumpIfTrueOperation.java</url>
           <line>24</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/parameter/PositionMode.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/IntCodeComputer/src/main/java/com/aoc/intcode/memory/Memory.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

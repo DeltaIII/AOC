@@ -1,6 +1,6 @@
 package com.aoc.intcode.memory;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -10,18 +10,21 @@ import java.util.Queue;
  */
 public class Memory {
 
-    private List<Long> memory;
+    private long[] memory;
     private int pointer = 0;
     private int relativeBase = 0;
     private final Queue<Long> inputs = new LinkedList<>();
     private final List<Long> outputs = new LinkedList<>();
 
     public Memory(List<Long> program){
-        this.memory = new ArrayList<>(program);
+        this.memory = new long[program.size()];
+        for (int i=0; i<program.size(); i++){
+            this.memory[i] = program.get(i);
+        }
     }
 
     public List<Long> getCurrentState(){
-        return new ArrayList<>(memory);
+        return Arrays.stream(this.memory).collect(LinkedList::new, List::add, List::addAll);
     }
 
     public int getPointerAddress(){
@@ -30,28 +33,41 @@ public class Memory {
 
     public void incrementAddress(int steps){
         this.pointer += steps;
+        checkForNegativeMemoryPointer(this.pointer, "Invalid pointer: ");
     }
 
     public void setPointerAddress(int newAddress){
-        if(newAddress<0) {
-            throw new IllegalArgumentException("Invalid pointer: "+ newAddress);
-        }
+        checkForNegativeMemoryPointer(newAddress, "Invalid pointer: ");
         this.pointer = newAddress;
 
     }
-    public boolean isEndOfMemory(){
-        return this.pointer>=this.memory.size();
-    }
 
     public Long getValueAtAddress(int address){
-        return this.memory.get(address);
+        this.checkAddress(address);
+        return this.memory[address];
     }
 
     public void setValueAtAddress(int address, Long valueToSet){
-        if(address<0 && address>=this.size()){
-            throw new IllegalArgumentException("Invalid memory pointer received: "+address);
+        this.checkAddress(address);
+        this.memory[address] = valueToSet;
+    }
+
+    private void checkAddress(int address){
+        checkForNegativeMemoryPointer(address, "Cannot have negative memory pointer: ");
+        dynamicallyExpandMemoryIfNeeded(address);
+    }
+
+    private void dynamicallyExpandMemoryIfNeeded(int address) {
+        if(address >= this.size()){
+            int sizeMultiplier = address/this.size()+1;
+            this.memory = Arrays.copyOf(memory,this.size()*sizeMultiplier);
         }
-        this.memory.set(address,valueToSet);
+    }
+
+    private void checkForNegativeMemoryPointer(int address, String s) {
+        if (address < 0) {
+            throw new IllegalArgumentException(s + address);
+        }
     }
 
     public long getInput(){
@@ -74,7 +90,7 @@ public class Memory {
     }
 
     public int size(){
-        return this.memory.size();
+        return this.memory.length;
     }
 
     public int getRelativeBase() {
