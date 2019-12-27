@@ -3,7 +3,6 @@ package com.aoc.intcode.operation.codes;
 import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.memory.Memory;
 import com.aoc.intcode.operation.Operation;
-import com.aoc.intcode.parameter.ImmediateMode;
 
 public class MultiplicationOperation implements Operation {
 

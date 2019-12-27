@@ -4,6 +4,7 @@ import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.memory.Memory;
 import com.aoc.intcode.operation.codes.AdditionOperation;
 import com.aoc.intcode.operation.codes.EqualsOperation;
+import com.aoc.intcode.operation.codes.IncrementRelativeBaseOperation;
 import com.aoc.intcode.operation.codes.InputOperation;
 import com.aoc.intcode.operation.codes.JumpIfFalseOperation;
 import com.aoc.intcode.operation.codes.JumpIfTrueOperation;
@@ -42,6 +43,7 @@ public class OperationUtils {
         wrapOperationToCheckArguments(operations, new JumpIfFalseOperation());
         wrapOperationToCheckArguments(operations, new LessThanOperation());
         wrapOperationToCheckArguments(operations, new EqualsOperation());
+        wrapOperationToCheckArguments(operations, new IncrementRelativeBaseOperation());
 
         return operations;
     }

@@ -24,11 +24,11 @@ public class LessThanOperation implements Operation {
         long elementToCompare = instruction.readFromMemory(COMPARED_INDEX, memory);
         long referenceElement = instruction.readFromMemory(REFERENCE_INDEX, memory);
 
-        Long valueToWrite;
+        long valueToWrite;
         if(elementToCompare<referenceElement){
-            valueToWrite = 1l;
+            valueToWrite = 1L;
         } else {
-            valueToWrite = 0l;
+            valueToWrite = 0L;
         }
 
         instruction.writeToMemory(getNumberOfParameters(),memory,valueToWrite);
