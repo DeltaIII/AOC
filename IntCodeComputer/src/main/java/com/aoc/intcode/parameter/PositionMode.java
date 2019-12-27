@@ -13,8 +13,8 @@ public class PositionMode implements ParameterMode{
     private PositionMode(){};
 
     @Override
-    public int readValue(int parameterPointer, Memory memory) {
-        int position = memory.getValueAtAddress(parameterPointer);
+    public long readValue(int parameterPointer, Memory memory) {
+        int position = Math.toIntExact(memory.getValueAtAddress(parameterPointer));
         return memory.getValueAtAddress(position);
     }
 

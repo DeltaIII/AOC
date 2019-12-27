@@ -23,11 +23,10 @@ public class AdditionOperation implements Operation {
 
     @Override
     public void accept(Instruction instruction, Memory memory) {
-        int augend = instruction.getParameter(AUGEND_INDEX, memory);
-        int addend = instruction.getParameter(AUDDEND_INDEX, memory);
-        Integer operationResult =  augend+addend;
-        int outputPointer = instruction.getParameterValue(getNumberOfParameters(), memory, ImmediateMode.getInstance());
-        memory.setValueAtAddress(outputPointer, operationResult);
+        long augend = instruction.readFromMemory(AUGEND_INDEX, memory);
+        long addend = instruction.readFromMemory(AUDDEND_INDEX, memory);
+        Long operationResult =  augend+addend;
+        instruction.writeToMemory(getNumberOfParameters(),memory,operationResult);
         memory.incrementAddress(this.getNumberOfParameters()+1);
     }
 }

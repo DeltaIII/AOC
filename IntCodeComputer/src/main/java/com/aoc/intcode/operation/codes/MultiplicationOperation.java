@@ -23,12 +23,10 @@ public class MultiplicationOperation implements Operation {
 
     @Override
     public void accept(Instruction instruction, Memory memory) {
-        int multiplicand = instruction.getParameter(MULTIPLICAND_INDEX, memory);
-        int multiplier = instruction.getParameter(MULTIPLIER_INDEX, memory);
-        Integer operationResult =  multiplicand*multiplier;
-
-        int outputPointer = instruction.getParameterValue(getNumberOfParameters(), memory, ImmediateMode.getInstance());
-        memory.setValueAtAddress(outputPointer, operationResult);
+        long multiplicand = instruction.readFromMemory(MULTIPLICAND_INDEX, memory);
+        long multiplier = instruction.readFromMemory(MULTIPLIER_INDEX, memory);
+        Long operationResult =  multiplicand*multiplier;
+        instruction.writeToMemory(getNumberOfParameters(),memory,operationResult);
         memory.incrementAddress(this.getNumberOfParameters()+1);
     }
 }

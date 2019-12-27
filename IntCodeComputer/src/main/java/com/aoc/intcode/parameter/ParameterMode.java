@@ -13,5 +13,5 @@ public interface ParameterMode {
      * @return the parameter value read from the {@link Memory}. N.B. This may not be equal to the {@link Integer} value
      * stored at that parameter address pointer in the {@link Memory}
      */
-    int readValue(int parameterPointer, @NotNull Memory memory);
+    long readValue(int parameterPointer, @NotNull Memory memory);
 }

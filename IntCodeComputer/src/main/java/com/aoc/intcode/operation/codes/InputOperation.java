@@ -13,10 +13,8 @@ public class InputOperation implements Operation {
 
     @Override
     public void accept(Instruction operationInstruction, Memory memory) {
-        Integer operationResult =  memory.getInput();
-
-        int outputPointer = operationInstruction.getParameterValue(getNumberOfParameters(), memory, ImmediateMode.getInstance());
-        memory.setValueAtAddress(outputPointer, operationResult);
+        Long operationResult =  memory.getInput();
+        operationInstruction.writeToMemory(getNumberOfParameters(),memory,operationResult);
         memory.incrementAddress(this.getNumberOfParameters()+1);
     }
 

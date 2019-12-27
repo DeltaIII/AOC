@@ -33,15 +33,15 @@ public class Computer {
         }
     }
 
-    public List<Integer> run(List<Integer> inputs){
-        for (Integer input : inputs) {
+    public List<Long> run(List<Long> inputs){
+        for (Long input : inputs) {
             this.memory.addToInputs(input);
         }
         runToTermination();
         return memory.getCurrentState();
     }
 
-    public List<Integer> run() {
+    public List<Long> run() {
         return run(new ArrayList<>());
     }
 
@@ -60,17 +60,17 @@ public class Computer {
     }
 
     private void outputIndexes() {
-        List<Integer> indexes = new LinkedList<>();
-        for (int index = 0; index<this.memory.size(); index++){
+        List<Long> indexes = new LinkedList<>();
+        for (long index = 0; index<this.memory.size(); index++){
             indexes.add(index);
         }
         printState(indexes);
     }
 
-    private void printState(List<Integer> state){
+    private void printState(List<Long> state){
         StringBuilder stringBuilder = new StringBuilder();
-        for (Integer value : state) {
-            stringBuilder.append(String.format(" %5d,", value));
+        for (Long value : state) {
+            stringBuilder.append(String.format(" %20d,", value));
         }
         logger.log(Level.INFO, stringBuilder.toString());
 
@@ -81,7 +81,7 @@ public class Computer {
         return Instruction.getInstruction(memory.getPointerAddress(), memory);
     }
 
-    public List<Integer> getOutputs(){
+    public List<Long> getOutputs(){
         return this.memory.getOutputs();
     }
 

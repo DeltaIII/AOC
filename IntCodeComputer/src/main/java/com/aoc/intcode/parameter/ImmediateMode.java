@@ -12,7 +12,7 @@ public class ImmediateMode implements ParameterMode{
     private ImmediateMode(){};
 
     @Override
-    public int readValue(int parameterPointer, Memory memory) {
+    public long readValue(int parameterPointer, Memory memory) {
         return memory.getValueAtAddress(parameterPointer);
     }
 

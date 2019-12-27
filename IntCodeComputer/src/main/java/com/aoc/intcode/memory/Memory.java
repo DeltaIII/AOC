@@ -12,16 +12,16 @@ import java.util.Queue;
  */
 public class Memory {
 
-    private List<Integer> memory;
+    private List<Long> memory;
     private int pointer = 0;
-    private final Queue<Integer> inputs = new LinkedList<>();
-    private final List<Integer> outputs = new LinkedList<>();
+    private final Queue<Long> inputs = new LinkedList<>();
+    private final List<Long> outputs = new LinkedList<>();
 
-    public Memory(List<Integer> initialState){
+    public Memory(List<Long> initialState){
         this.memory = new ArrayList<>(initialState);
     }
 
-    public List<Integer> getCurrentState(){
+    public List<Long> getCurrentState(){
         return new ArrayList<>(memory);
     }
 
@@ -44,31 +44,34 @@ public class Memory {
         return this.pointer>=this.memory.size();
     }
 
-    public Integer getValueAtAddress(int address){
+    public Long getValueAtAddress(int address){
         return this.memory.get(address);
     }
 
-    public int getInput(){
+    public void setValueAtAddress(int address, Long valueToSet){
+        if(address<0 && address>=this.size()){
+            throw new IllegalArgumentException("Invalid memory pointer received: "+address);
+        }
+        this.memory.set(address,valueToSet);
+    }
+
+    public long getInput(){
         if(!this.inputs.isEmpty()) {
             return this.inputs.poll();
         }
         throw new IllegalStateException("No further input provided.");
     }
 
-    public void addToInputs(Integer valueToAdd){
+    public void addToInputs(Long valueToAdd){
         this.inputs.add(valueToAdd);
     }
 
-    public List<Integer> getOutputs() {
+    public List<Long> getOutputs() {
         return new LinkedList<>(this.outputs);
     }
 
-    public void addToOutputs(Integer valueToAdd){
+    public void addToOutputs(Long valueToAdd){
         this.outputs.add(valueToAdd);
-    }
-
-    public void setValueAtAddress(int address, Integer valueToSet){
-        this.memory.set(address,valueToSet);
     }
 
     public int size(){

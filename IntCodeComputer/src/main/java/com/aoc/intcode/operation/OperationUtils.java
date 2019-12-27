@@ -3,7 +3,11 @@ package com.aoc.intcode.operation;
 import com.aoc.intcode.memory.Instruction;
 import com.aoc.intcode.memory.Memory;
 import com.aoc.intcode.operation.codes.AdditionOperation;
+import com.aoc.intcode.operation.codes.EqualsOperation;
 import com.aoc.intcode.operation.codes.InputOperation;
+import com.aoc.intcode.operation.codes.JumpIfFalseOperation;
+import com.aoc.intcode.operation.codes.JumpIfTrueOperation;
+import com.aoc.intcode.operation.codes.LessThanOperation;
 import com.aoc.intcode.operation.codes.MultiplicationOperation;
 import com.aoc.intcode.operation.codes.OutputOperation;
 
@@ -20,7 +24,11 @@ public class OperationUtils {
     }
 
     public static Operation getOperationForInstruction(Instruction instruction){
-        return OPERATIONS.get(instruction.getOperationCode());
+        Integer operationCode = instruction.getOperationCode();
+        if(OPERATIONS.containsKey(operationCode)){
+            return OPERATIONS.get(operationCode);
+        }
+        throw  new IllegalArgumentException("Unknown op code: "+ operationCode);
     }
 
     private static Map<Integer, Operation> getOperations() {
@@ -30,6 +38,10 @@ public class OperationUtils {
         wrapOperationToCheckArguments(operations, new MultiplicationOperation());
         wrapOperationToCheckArguments(operations, new InputOperation());
         wrapOperationToCheckArguments(operations, new OutputOperation());
+        wrapOperationToCheckArguments(operations, new JumpIfTrueOperation());
+        wrapOperationToCheckArguments(operations, new JumpIfFalseOperation());
+        wrapOperationToCheckArguments(operations, new LessThanOperation());
+        wrapOperationToCheckArguments(operations, new EqualsOperation());
 
         return operations;
     }

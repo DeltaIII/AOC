@@ -20,7 +20,7 @@ public class OutputOperation implements Operation {
 
     @Override
     public void accept(Instruction instruction, Memory memory) {
-        Integer valueToOutput = instruction.getParameter(OUTPUT_PARAMETER_NUMBER, memory);
+        Long valueToOutput = instruction.readFromMemory(OUTPUT_PARAMETER_NUMBER, memory);
         memory.addToOutputs(valueToOutput);
         memory.incrementAddress(this.getNumberOfParameters()+1);
     }

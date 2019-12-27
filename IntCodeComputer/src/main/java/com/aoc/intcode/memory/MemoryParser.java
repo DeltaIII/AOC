@@ -16,10 +16,10 @@ public class MemoryParser {
     }
 
     public static Memory parse(String[] inputIntegersAsStrings){
-        List<Integer> inputs = new LinkedList<>();
+        List<Long> inputs = new LinkedList<>();
 
         for (String inputIntegersAsString : inputIntegersAsStrings) {
-            inputs.add(Integer.parseInt(inputIntegersAsString));
+            inputs.add(Long.parseLong(inputIntegersAsString));
         }
 
         return new Memory(inputs);

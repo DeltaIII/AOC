@@ -8,6 +8,7 @@ public class ParameterModeUtil {
                 return PositionMode.getInstance();
             case 1:
                 return ImmediateMode.getInstance();
+            case 2:
             default:
                 throw new IllegalArgumentException(
                         String.format("Unknown parameter mode for value %d",parameterModeInstruction));
