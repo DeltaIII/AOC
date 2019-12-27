@@ -85,8 +85,8 @@ public class Computer {
         return this.memory.getOutputs();
     }
 
-    public static final Computer initialise(String intCodeInput){
-        Memory memory = MemoryParser.parse(intCodeInput);
+    public static final Computer initialise(String programInput){
+        Memory memory = MemoryParser.parseProgram(programInput);
         return new Computer(memory);
     }
 

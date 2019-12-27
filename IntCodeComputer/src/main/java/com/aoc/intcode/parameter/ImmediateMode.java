@@ -16,6 +16,11 @@ public class ImmediateMode implements ParameterMode{
         return memory.getValueAtAddress(parameterPointer);
     }
 
+    @Override
+    public void writeToAddress(int parameterPointer, Memory memory, Long valueToWrite) {
+        throw new IllegalAccessError("Immediate mode is not a valid write mode.");
+    }
+
     public static synchronized ImmediateMode getInstance(){
         if(singleton==null){
             singleton = new ImmediateMode();

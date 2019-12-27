@@ -26,7 +26,7 @@ public class AdditionOperation implements Operation {
         long augend = instruction.readFromMemory(AUGEND_INDEX, memory);
         long addend = instruction.readFromMemory(AUDDEND_INDEX, memory);
         Long operationResult =  augend+addend;
-        instruction.writeToMemory(getNumberOfParameters(),memory,operationResult);
+        instruction.writeToMemory(getNumberOfParameters(), memory, operationResult);
         memory.incrementAddress(this.getNumberOfParameters()+1);
     }
 }

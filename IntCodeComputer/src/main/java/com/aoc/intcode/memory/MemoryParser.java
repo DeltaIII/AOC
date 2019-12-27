@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class MemoryParser {
 
-    public static Memory parse(String csvString){
-        return parse(csvString.split(","));
+    public static Memory parseProgram(String csvString){
+        return parseProgram(csvString.split(","));
     }
 
-    public static Memory parse(String[] inputIntegersAsStrings){
+    public static Memory parseProgram(String[] inputIntegersAsStrings){
         List<Long> inputs = new LinkedList<>();
 
         for (String inputIntegersAsString : inputIntegersAsStrings) {

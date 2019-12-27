@@ -28,13 +28,18 @@ public class Instruction {
     }
 
     public void writeToMemory(int parameterNumber, Memory memory, Long newValue){
-        long addressToWriteTo = readValueFromMemory(parameterNumber, memory, ImmediateMode.getInstance());
-        memory.setValueAtAddress(Math.toIntExact(addressToWriteTo), newValue);
+        ParameterMode writeMode = getParameterMode(parameterNumber);
+        int parameterPointer = getParameterPointer(parameterNumber);
+        writeMode.writeToAddress(parameterPointer, memory, newValue);
     }
 
-    public long readValueFromMemory(int parameterNumber, Memory memory, ParameterMode parameterMode) {
-        int parameterPointer = this.instructionPointer+parameterNumber;
-        return parameterMode.readValue(parameterPointer,memory);
+    private long readValueFromMemory(int parameterNumber, Memory memory, ParameterMode readMode) {
+        int parameterPointer = getParameterPointer(parameterNumber);
+        return readMode.readValue(parameterPointer,memory);
+    }
+
+    private int getParameterPointer(int parameterNumber) {
+        return this.instructionPointer+parameterNumber;
     }
 
     private ParameterMode getParameterMode(int parameterNumber) {

@@ -9,6 +9,7 @@ public class ParameterModeUtil {
             case 1:
                 return ImmediateMode.getInstance();
             case 2:
+                return RelativeMode.getInstance();
             default:
                 throw new IllegalArgumentException(
                         String.format("Unknown parameter mode for value %d",parameterModeInstruction));

@@ -3,20 +3,21 @@ package com.aoc.intcode.parameter;
 import com.aoc.intcode.memory.Memory;
 
 /**
- * Position parameter mode: Parses the value at the parameter address as the parameter's position, then returns the
- * the value held at the position in {@link Memory}.
+ * Relative parameter mode: Parses the value at the parameter address as a relative parameter position, offset by the
+ * relative base in {@link Memory}, then returns the the value held at the position in {@link Memory}.
  */
-public class PositionMode implements ParameterMode{
+public class RelativeMode implements ParameterMode{
 
-    private static PositionMode singleton;
+    private static RelativeMode singleton;
 
-    private PositionMode(){};
+    private RelativeMode(){};
 
     @Override
     public long readValue(int parameterPointer, Memory memory) {
         int address = getAddress(parameterPointer, memory);
         return memory.getValueAtAddress(address);
     }
+
     @Override
     public void writeToAddress(int parameterPointer, Memory memory, Long valueToWrite) {
         int address = getAddress(parameterPointer, memory);
@@ -24,12 +25,13 @@ public class PositionMode implements ParameterMode{
     }
 
     private int getAddress(int parameterPointer, Memory memory) {
-        return Math.toIntExact(memory.getValueAtAddress(parameterPointer));
+        int relativePosition = Math.toIntExact(memory.getValueAtAddress(parameterPointer));
+        return memory.getRelativeBase()+relativePosition;
     }
 
-    public static synchronized PositionMode getInstance(){
+    public static synchronized RelativeMode getInstance(){
         if(singleton==null){
-            singleton = new PositionMode();
+            singleton = new RelativeMode();
         }
         return singleton;
     }

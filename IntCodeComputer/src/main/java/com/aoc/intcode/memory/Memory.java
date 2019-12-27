@@ -1,7 +1,5 @@
 package com.aoc.intcode.memory;
 
-import com.google.common.collect.ImmutableList;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,11 +12,12 @@ public class Memory {
 
     private List<Long> memory;
     private int pointer = 0;
+    private int relativeBase = 0;
     private final Queue<Long> inputs = new LinkedList<>();
     private final List<Long> outputs = new LinkedList<>();
 
-    public Memory(List<Long> initialState){
-        this.memory = new ArrayList<>(initialState);
+    public Memory(List<Long> program){
+        this.memory = new ArrayList<>(program);
     }
 
     public List<Long> getCurrentState(){
@@ -78,4 +77,11 @@ public class Memory {
         return this.memory.size();
     }
 
+    public int getRelativeBase() {
+        return this.relativeBase;
+    }
+
+    public void addToRelativeBase(int valueToAdd){
+        this.relativeBase += valueToAdd;
+    }
 }

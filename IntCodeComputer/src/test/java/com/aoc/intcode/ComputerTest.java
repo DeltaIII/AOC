@@ -3,7 +3,7 @@ package com.aoc.intcode;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,12 +85,12 @@ class ComputerTest {
             @Test
             public void testInputOutput() {
                 String computerInput = "3,0,4,0,99";
-                Long input = Long.valueOf(12456);
+                Long input = 12456L;
                 String expectedMemoryState = "[" + input + ", 0, 4, 0, 99]";
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                List<Long> returnedMemoryState = intCodeComputer.run(Arrays.asList(input));
+                List<Long> returnedMemoryState = intCodeComputer.run(Collections.singletonList(input));
 
                 assertEquals(expectedMemoryState, returnedMemoryState.toString());
 
@@ -101,7 +101,7 @@ class ComputerTest {
 
             @Test
             public void partOne(){
-                List<Long> inputs = Arrays.asList(1l);
+                List<Long> inputs = Collections.singletonList(1L);
 
                 Computer intCodeComputer = Computer.initialise(DAY_INPUT);
 
@@ -127,11 +127,11 @@ class ComputerTest {
             @Test
             public void positionModeNotEqual(){
                 String computerInput = "3,9,8,9,10,9,4,9,99,-1,8";
-                Long input = Long.valueOf(12456);
+                Long input = 12456L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -141,11 +141,11 @@ class ComputerTest {
             @Test
             public void positionModeEqual(){
                 String computerInput = "3,9,8,9,10,9,4,9,99,-1,8";
-                Long input = Long.valueOf(8);
+                Long input = 8L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -155,11 +155,11 @@ class ComputerTest {
             @Test
             public void immediateModeNotEqual(){
                 String computerInput = "3,3,1108,-1,8,3,4,3,99";
-                Long input = Long.valueOf(1);
+                Long input = 1L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -169,11 +169,11 @@ class ComputerTest {
             @Test
             public void immediateModeEqual(){
                 String computerInput = "3,3,1108,-1,8,3,4,3,99";
-                Long input = Long.valueOf(8);
+                Long input = 8L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -187,11 +187,11 @@ class ComputerTest {
             @Test
             public void positionModeGreaterThan(){
                 String computerInput = "3,9,7,9,10,9,4,9,99,-1,8";
-                Long input = Long.valueOf(12456);
+                Long input = 12456L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -201,11 +201,11 @@ class ComputerTest {
             @Test
             public void positionModeEqual(){
                 String computerInput = "3,9,7,9,10,9,4,9,99,-1,8";
-                Long input = Long.valueOf(8);
+                Long input = 8L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -215,11 +215,11 @@ class ComputerTest {
             @Test
             public void positionModeLessThan(){
                 String computerInput = "3,9,7,9,10,9,4,9,99,-1,8";
-                Long input = Long.valueOf(2);
+                Long input = 2L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -229,11 +229,11 @@ class ComputerTest {
             @Test
             public void immediateModeGreaterThan(){
                 String computerInput = "3,3,1107,-1,8,3,4,3,99";
-                Long input = Long.valueOf(11);
+                Long input = 11L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -243,11 +243,11 @@ class ComputerTest {
             @Test
             public void immediateModeEqual(){
                 String computerInput = "3,3,1107,-1,8,3,4,3,99";
-                Long input = Long.valueOf(8);
+                Long input = 8L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -257,11 +257,11 @@ class ComputerTest {
             @Test
             public void immediateModeLessThan(){
                 String computerInput = "3,3,1107,-1,8,3,4,3,99";
-                Long input = Long.valueOf(1);
+                Long input = 1L;
                 Computer intCodeComputer = Computer.initialise(computerInput);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -277,12 +277,12 @@ class ComputerTest {
 
             @Test
             public void jumpWithPositionZero(){
-                Long expected = 0l;
-                Long input = 0l;
+                Long expected = 0L;
+                Long input = 0L;
                 Computer intCodeComputer = Computer.initialise(POSITION_MODE_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -291,25 +291,26 @@ class ComputerTest {
 
             @Test
             public void jumpWithPositionNonZero(){
-                Long expected = 1l;
-                Long input = Long.valueOf(12456);
+                Long expected = 1L;
+                Long input = 12456L;
                 Computer intCodeComputer = Computer.initialise(POSITION_MODE_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
                 assertEquals(expected, outputs.get(0));
             }
+
             @Test
             public void jumpWithImmediateZero(){
-                Long expected = 0l;
-                Long input = 0l;
+                Long expected = 0L;
+                Long input = 0L;
                 Computer intCodeComputer = Computer.initialise(IMMEDIATE_MODE_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -318,12 +319,12 @@ class ComputerTest {
 
             @Test
             public void jumpWithImmediateNonZero(){
-                Long expected = 1l;
-                Long input = Long.valueOf(12456);
+                Long expected = 1L;
+                Long input = 12456L;
                 Computer intCodeComputer = Computer.initialise(IMMEDIATE_MODE_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -342,12 +343,12 @@ class ComputerTest {
 
             @Test
             public void greaterThanEight(){
-                Long expected = 1001l;
-                Long input = Long.valueOf(12456);
+                Long expected = 1001L;
+                Long input = 12456L;
                 Computer intCodeComputer = Computer.initialise(COMPUTER_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -356,12 +357,12 @@ class ComputerTest {
 
             @Test
             public void EqualToEight(){
-                Long expected = 1000l;
-                Long input = Long.valueOf(8);
+                Long expected = 1000L;
+                Long input = 8L;
                 Computer intCodeComputer = Computer.initialise(COMPUTER_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -370,12 +371,12 @@ class ComputerTest {
 
             @Test
             public void LessThanEight(){
-                Long expected = 999l;
-                Long input = Long.valueOf(2);
+                Long expected = 999L;
+                Long input = 2L;
                 Computer intCodeComputer = Computer.initialise(COMPUTER_INPUT);
 
                 //Act
-                intCodeComputer.run(Arrays.asList(input));
+                intCodeComputer.run(Collections.singletonList(input));
 
                 List<Long> outputs = intCodeComputer.getOutputs();
                 assertEquals(1,outputs.size());
@@ -390,7 +391,7 @@ class ComputerTest {
 
             @Test
             public void partTwo(){
-                List<Long> inputs = Arrays.asList(5l);
+                List<Long> inputs = Collections.singletonList(5L);
 
                 Computer intCodeComputer = Computer.initialise(DAY_INPUT);
 
@@ -415,6 +416,25 @@ class ComputerTest {
     @Nested
     class DayNineTests{
 
+
+        @Nested
+        class UpgradeTests{
+
+            @Test
+            public void quineExample(){
+                String program = "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99";
+                String expected = "[109L, 1L, 204L, -1L, 1001L, 100L, 1L, 100L, 1008L, 100L, 16L, 101L, 1006L, 101L, 0L, 99L]";
+
+                Computer computer = Computer.initialise(program);
+
+                //Act
+                computer.run();
+
+                assertEquals(expected, computer.getOutputs().toString());
+
+            }
+
+        }
 
 
     }
