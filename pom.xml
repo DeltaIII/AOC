@@ -10,12 +10,19 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>IntCodeComputer</module>
+        <module>2020</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.5.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.0-jre</version>
         </dependency>
     </dependencies>
 
