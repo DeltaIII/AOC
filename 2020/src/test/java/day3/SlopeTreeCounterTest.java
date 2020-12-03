@@ -15,18 +15,18 @@ class SlopeTreeCounterTest {
 
     @Test
     void countTreesOnSlope_testData() throws IOException {
-        Forest forest = ForestParser.parseForest(DAY_3_TEST_DATA_TXT);
+        Mountain mountain = MountainParser.parseMountain(DAY_3_TEST_DATA_TXT);
 
-        int numberOfTrees = SlopeTreeCounter.countTreesOnSlope(forest, new Slope(3, 1));
+        int numberOfTrees = SlopeTreeCounter.countTreesOnSlope(mountain, new Slope(3, 1));
 
         then(numberOfTrees).isEqualTo(7);
     }
 
     @Test
     void part1() throws IOException {
-        Forest forest = ForestParser.parseForest(DAY_3_TXT);
+        Mountain mountain = MountainParser.parseMountain(DAY_3_TXT);
 
-        int numberOfTrees = SlopeTreeCounter.countTreesOnSlope(forest, new Slope(3, 1));
+        int numberOfTrees = SlopeTreeCounter.countTreesOnSlope(mountain, new Slope(3, 1));
 
         then(numberOfTrees).isEqualTo(209);
     }
@@ -34,7 +34,7 @@ class SlopeTreeCounterTest {
 
     @Test
     void part2_testData() throws IOException {
-        Forest forest = ForestParser.parseForest(DAY_3_TEST_DATA_TXT);
+        Mountain mountain = MountainParser.parseMountain(DAY_3_TEST_DATA_TXT);
 
         List<Slope> slopes = new LinkedList<>();
         slopes.add(new Slope(1,1));
@@ -46,7 +46,7 @@ class SlopeTreeCounterTest {
         int part2Count = 1;
 
         for (Slope slope : slopes) {
-            part2Count *= SlopeTreeCounter.countTreesOnSlope(forest, slope);
+            part2Count *= SlopeTreeCounter.countTreesOnSlope(mountain, slope);
         }
 
         then(part2Count).isEqualTo(336);
@@ -54,19 +54,19 @@ class SlopeTreeCounterTest {
 
     @Test
     void part2() throws IOException {
-        Forest forest = ForestParser.parseForest(DAY_3_TXT);
+        Mountain mountain = MountainParser.parseMountain(DAY_3_TXT);
 
-        List<Slope> slopes = new LinkedList<>();
-        slopes.add(new Slope(1,1));
-        slopes.add(new Slope(3,1));
-        slopes.add(new Slope(5,1));
-        slopes.add(new Slope(7,1));
-        slopes.add(new Slope(1,2));
+        Slope[] slopes = new Slope[] {
+            new Slope(1,1),
+            new Slope(3,1),
+            new Slope(5,1),
+            new Slope(7,1),
+            new Slope(1,2)};
         
         int part2Count = 1;
 
         for (Slope slope : slopes) {
-            part2Count *= SlopeTreeCounter.countTreesOnSlope(forest, slope);
+            part2Count *= SlopeTreeCounter.countTreesOnSlope(mountain, slope);
         }
 
         then(part2Count).isEqualTo(1574890240);

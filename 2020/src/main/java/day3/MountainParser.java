@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import util.InputFileReader;
 
-public class ForestParser {
+public class MountainParser {
 
-    public static Forest parseForest(String fileName) throws IOException {
+    public static Mountain parseMountain(String fileName) throws IOException {
         List<String> input = InputFileReader.readStrings(fileName).collect(Collectors.toList());
 
         int height = input.size();
@@ -28,7 +28,7 @@ public class ForestParser {
             y++;
         }
 
-        return new Forest(forestHexes);
+        return new Mountain(forestHexes);
     }
 
 }

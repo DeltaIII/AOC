@@ -1,11 +1,11 @@
 package day3;
 
-public class Forest {
+public class Mountain {
 
     private final HexType[][] forestHexes;
     private final int width;
 
-    public Forest(final HexType[][] forestHexes) {
+    public Mountain(final HexType[][] forestHexes) {
         this.forestHexes = forestHexes;
         this.width = forestHexes[0].length;
     }
