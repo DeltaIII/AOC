@@ -36,12 +36,12 @@ class SlopeTreeCounterTest {
     void part2_testData() throws IOException {
         Mountain mountain = MountainParser.parseMountain(DAY_3_TEST_DATA_TXT);
 
-        List<Slope> slopes = new LinkedList<>();
-        slopes.add(new Slope(1,1));
-        slopes.add(new Slope(3,1));
-        slopes.add(new Slope(5,1));
-        slopes.add(new Slope(7,1));
-        slopes.add(new Slope(1,2));
+        Slope[] slopes = new Slope[] {
+            new Slope(1,1),
+            new Slope(3,1),
+            new Slope(5,1),
+            new Slope(7,1),
+            new Slope(1,2)};
 
         int part2Count = 1;
 

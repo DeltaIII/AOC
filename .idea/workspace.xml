@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="46faec31-2c1d-4bb9-bd1c-046b9434fd7b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020/src/main/java/day3/Forest.java" beforeDir="false" afterPath="$PROJECT_DIR$/2020/src/main/java/day3/Mountain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020/src/main/java/day3/ForestParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/2020/src/main/java/day3/MountainParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020/src/main/java/day3/SlopeTreeCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/2020/src/main/java/day3/SlopeTreeCounter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020/src/test/java/day3/SlopeTreeCounterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/2020/src/test/java/day3/SlopeTreeCounterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +188,7 @@
       <workItem from="1578566692859" duration="594000" />
       <workItem from="1606920132969" duration="6552000" />
       <workItem from="1606984380912" duration="4381000" />
-      <workItem from="1607001993681" duration="2391000" />
+      <workItem from="1607001993681" duration="3275000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting working day 5 stuff and change to longs in memory.&#10;&#10;TODO:&#10;New op code + relative parameter mode&#10;Expanding memory">
       <created>1577471601014</created>
