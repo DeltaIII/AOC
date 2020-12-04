@@ -9,17 +9,17 @@ public class PatternMatchField implements PassportField<String> {
     private static final Pattern ID_PATTERN = Pattern.compile("^\\d{9}$");
     private static final Pattern HCL_PATTERN = Pattern.compile("^#[\\da-f]{6}$");
 
-    private final String id;
+    private final String value;
     private final boolean isValid;
 
-    private PatternMatchField(final String id, final Pattern pattern) {
-        this.id = id;
+    private PatternMatchField(final String value, final Pattern pattern) {
+        this.value = value;
         this.isValid = pattern.matcher(id).matches();
     }
 
     @Override
     public String getValue() {
-        return id;
+        return value;
     }
 
     @Override
@@ -45,14 +45,14 @@ public class PatternMatchField implements PassportField<String> {
 
         return new EqualsBuilder()
             .append(isValid, that.isValid)
-            .append(id, that.id)
+            .append(value, that.value)
             .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-            .append(id)
+            .append(value)
             .append(isValid)
             .toHashCode();
     }
