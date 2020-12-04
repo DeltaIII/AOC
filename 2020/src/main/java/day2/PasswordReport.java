@@ -14,7 +14,7 @@ public class PasswordReport {
     }
 
     public long countValidPasswords() throws IOException {
-        Stream<String> passwordData = InputFileReader.readStrings("day2.txt");
+        Stream<String> passwordData = InputFileReader.readStrings("day2/day2.txt");
         return passwordData.map(this::isValidPassword).filter(Boolean::booleanValue).count();
     }
 

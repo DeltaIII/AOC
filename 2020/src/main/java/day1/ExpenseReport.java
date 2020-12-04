@@ -9,7 +9,7 @@ import util.InputFileReader;
 public class ExpenseReport {
 
     public static int verifyExpenses() throws IOException {
-        Set<Integer> expenseItems = InputFileReader.readInts("day1.txt").collect(Collectors.toSet());
+        Set<Integer> expenseItems = InputFileReader.readInts("day1/day1.txt").collect(Collectors.toSet());
         for (Integer expenseItem : expenseItems) {
             int complement = 2020 - expenseItem;
             if (expenseItems.contains(complement)){
@@ -21,7 +21,7 @@ public class ExpenseReport {
 
 
     public static int verifyExpensesPart2() throws IOException {
-        Set<Integer> expenseItems = InputFileReader.readInts("day1.txt").collect(Collectors.toSet());
+        Set<Integer> expenseItems = InputFileReader.readInts("day1/day1.txt").collect(Collectors.toSet());
         Set<Integer> nestedItems = new HashSet<>(expenseItems);
         for (Integer expenseItem : expenseItems) {
             nestedItems.remove(expenseItem);

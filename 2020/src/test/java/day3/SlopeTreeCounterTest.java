@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 class SlopeTreeCounterTest {
 
-    public static final String DAY_3_TEST_DATA_TXT = "day3TestData.txt";
-    public static final String DAY_3_TXT = "day3.txt";
+    public static final String DAY_3_TEST_DATA_TXT = "day3/day3TestData.txt";
+    public static final String DAY_3_TXT = "day3/day3.txt";
 
     @Test
     void countTreesOnSlope_testData() throws IOException {
