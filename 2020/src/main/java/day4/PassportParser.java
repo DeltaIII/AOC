@@ -52,14 +52,6 @@ public class PassportParser {
         return passportBuilder.build();
     }
 
-    private static Long parseId(String idString) {
-        try {
-            return Long.parseLong(idString);
-        } catch (NumberFormatException ex) {
-            return -1L;
-        }
-    }
-
     private static AlwaysValidField<Long> parseCountryId(String idString) {
         Long id;
         try {
