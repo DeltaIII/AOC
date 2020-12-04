@@ -1,5 +1,14 @@
 package day4;
 
+import day4.fields.AlwaysValidField;
+import day4.fields.EyeColourField;
+import day4.fields.HeightField;
+import day4.fields.PatternMatchField;
+import day4.fields.InvalidField;
+import day4.fields.PassportField;
+import day4.fields.YearField;
+import java.util.function.Function;
+
 public class PassportParser {
 
     public static Passport parse(String passportString){
@@ -12,28 +21,28 @@ public class PassportParser {
             String value = keyValuePair[1].trim();
             switch (key) {
                 case "pid":
-                    passportBuilder.id(parseId(value));
+                    passportBuilder.id(PatternMatchField.idField(value));
                     break;
                 case "cid":
-                    passportBuilder.countryId(parseId(value));
+                    passportBuilder.countryId(parseCountryId(value));
                     break;
                 case "byr":
-                    passportBuilder.birthYear(parseYear(value));
+                    passportBuilder.birthYear(parseYear(value, YearField::birthYear));
                     break;
                 case "iyr":
-                    passportBuilder.issueYear(parseYear(value));
+                    passportBuilder.issueYear(parseYear(value, YearField::issueYear));
                     break;
                 case "eyr":
-                    passportBuilder.expirationYear(parseYear(value));
+                    passportBuilder.expirationYear(parseYear(value, YearField::expiryYear));
                     break;
                 case "ecl":
-                    passportBuilder.eyeColour(value);
+                    passportBuilder.eyeColour(new EyeColourField(value));
                     break;
                 case "hcl":
-                    passportBuilder.hairColour(value);
+                    passportBuilder.hairColour(PatternMatchField.hairColourField(value));
                     break;
                 case "hgt":
-                    passportBuilder.height(value);
+                    passportBuilder.height(HeightField.parse(value));
                     break;
                 default:
                     throw new IllegalArgumentException("Bad input field: <" + key + ">");
@@ -51,11 +60,22 @@ public class PassportParser {
         }
     }
 
-    private static int parseYear(String yearString) {
+    private static AlwaysValidField<Long> parseCountryId(String idString) {
+        Long id;
         try {
-            return Integer.parseInt(yearString);
+            id = Long.parseLong(idString);
         } catch (NumberFormatException ex) {
-            return -1;
+            id = null;
+        }
+        return new AlwaysValidField<>(id);
+    }
+
+    private static PassportField<Integer> parseYear(String yearString, Function<Integer, PassportField<Integer>> factory) {
+        try {
+            int year = Integer.parseInt(yearString);
+            return factory.apply(year);
+        } catch (NumberFormatException ex) {
+            return new InvalidField<>();
         }
 
     }

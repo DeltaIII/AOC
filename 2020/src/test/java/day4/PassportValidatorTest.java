@@ -22,7 +22,7 @@ class PassportValidatorTest {
 
         int numberValid = 0;
         for (Passport passport : passports) {
-            numberValid += PassportValidator.isValid(passport)? 1 : 0;
+            numberValid += PassportValidator.isValidNullCheckOnly(passport)? 1 : 0;
         }
 
         then(numberValid).isEqualTo(2);
@@ -37,9 +37,24 @@ class PassportValidatorTest {
 
         int numberValid = 0;
         for (Passport passport : passports) {
-            numberValid += PassportValidator.isValid(passport)? 1 : 0;
+            numberValid += PassportValidator.isValidNullCheckOnly(passport)? 1 : 0;
         }
 
         then(numberValid).isEqualTo(250);
+    }
+
+
+    @Test
+    void isValid_part2() throws IOException {
+        Stream<String> testData = InputFileReader.readStrings("day4/input.txt");
+
+        Collection<Passport> passports = PassportBatchParser.parse(testData);
+
+        int numberValid = 0;
+        for (Passport passport : passports) {
+            numberValid += PassportValidator.isValid(passport)? 1 : 0;
+        }
+
+        then(numberValid).isEqualTo(158);
     }
 }

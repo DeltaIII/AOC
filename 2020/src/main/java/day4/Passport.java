@@ -1,5 +1,8 @@
 package day4;
 
+import day4.fields.HeightField;
+import day4.fields.PassportField;
+import day4.fields.YearField;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,13 +14,13 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class Passport {
 
-    private Integer birthYear;
-    private Integer issueYear;
-    private Integer expirationYear;
-    private String height;
-    private String hairColour;
-    private String eyeColour;
-    private Long id;
-    private Long countryId;
+    private PassportField<Integer> birthYear;
+    private PassportField<Integer> issueYear;
+    private PassportField<Integer> expirationYear;
+    private PassportField<String> height;
+    private PassportField<String> hairColour;
+    private PassportField<String> eyeColour;
+    private PassportField<String> id;
+    private PassportField<Long> countryId;
 
 }

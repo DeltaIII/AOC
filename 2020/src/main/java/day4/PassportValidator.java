@@ -1,12 +1,13 @@
 package day4;
 
+import day4.fields.PassportField;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
 public class PassportValidator {
 
-    private static final Set<Function<Passport, Object>> MANDATORY_FIELDS = new HashSet<>();
+    private static final Set<Function<Passport, PassportField<?>>> MANDATORY_FIELDS = new HashSet<>();
 
     static {
         MANDATORY_FIELDS.add(Passport::getBirthYear);
@@ -18,12 +19,33 @@ public class PassportValidator {
         MANDATORY_FIELDS.add(Passport::getId);
     }
 
+    /** Part 1 solution */
+    public static boolean isValidNullCheckOnly(Passport passport) {
+        boolean isValid = true;
+        for (Function<Passport, PassportField<?>> mandatoryField : MANDATORY_FIELDS) {
+            isValid = isValid && isFieldNull(passport, mandatoryField);
+        }
+        return MANDATORY_FIELDS.stream()
+            .noneMatch(passportFieldFunction -> isFieldNull(passport, passportFieldFunction));
+    }
+
+    /** Part 2 solution */
     public static boolean isValid(Passport passport) {
         boolean isValid = true;
-        for (Function<Passport, Object> mandatoryField : MANDATORY_FIELDS) {
-            Object apply = mandatoryField.apply(passport);
-            isValid = isValid && apply != null;
+        for (Function<Passport, PassportField<?>> mandatoryField : MANDATORY_FIELDS) {
+            isValid = isValid && isFieldValid(passport, mandatoryField);
         }
-        return isValid;
+        return MANDATORY_FIELDS.stream()
+            .allMatch(passportFieldFunction -> isFieldValid(passport, passportFieldFunction));
     }
+
+    private static boolean isFieldNull(final Passport passport, final Function<Passport, PassportField<?>> mandatoryField) {
+        return mandatoryField.apply(passport) == null;
+    }
+
+    private static boolean isFieldValid(final Passport passport, final Function<Passport, PassportField<?>> mandatoryField) {
+        PassportField<?> passportField = mandatoryField.apply(passport);
+        return passportField != null && passportField.isValid();
+    }
+
 }
