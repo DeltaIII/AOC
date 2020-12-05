@@ -1,9 +1,7 @@
 package day2;
 
-import java.io.IOException;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
-import util.InputFileReader;
 
 public class PasswordReport {
 
@@ -13,8 +11,7 @@ public class PasswordReport {
         this.policyFactory = policyFactory;
     }
 
-    public long countValidPasswords() throws IOException {
-        Stream<String> passwordData = InputFileReader.readStrings("day2/day2.txt");
+    public long countValidPasswords(Stream<String> passwordData) {
         return passwordData.map(this::isValidPassword).filter(Boolean::booleanValue).count();
     }
 

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import util.InputFileReader;
 
 class BoardingPassProcessorTest {
 
@@ -14,7 +15,8 @@ class BoardingPassProcessorTest {
     @Test
     void getLargestIdPass() throws IOException {
         // Given
-        Stream<BoardingPass> boardingPassStream = BinarySpaceBoardingPassBatchParser.parseBatch(INPUT);
+        Stream<BoardingPass> boardingPassStream =
+            InputFileReader.readObjects(INPUT, BinarySpaceBoardingPassParser::parseBoardingPass);
 
         // When
         BoardingPass largestIdPass = BoardingPassProcessor.getLargestIdPass(boardingPassStream);
@@ -26,7 +28,8 @@ class BoardingPassProcessorTest {
     @Test
     void testFindMissingBoardingPassId() throws IOException {
         // Given
-        Stream<BoardingPass> boardingPassStream = BinarySpaceBoardingPassBatchParser.parseBatch(INPUT);
+        Stream<BoardingPass> boardingPassStream =
+            InputFileReader.readObjects(INPUT, BinarySpaceBoardingPassParser::parseBoardingPass);
 
         // When
         int missingID = BoardingPassProcessor.findMissingBoardingPassId(boardingPassStream);
