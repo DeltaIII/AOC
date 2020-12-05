@@ -14,7 +14,7 @@ public class PatternMatchField implements PassportField<String> {
 
     private PatternMatchField(final String value, final Pattern pattern) {
         this.value = value;
-        this.isValid = pattern.matcher(id).matches();
+        this.isValid = pattern.matcher(value).matches();
     }
 
     @Override
