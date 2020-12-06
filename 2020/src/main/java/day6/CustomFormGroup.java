@@ -1,17 +1,15 @@
 package day6;
 
-import com.google.common.collect.Sets;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class CustomFormGroup {
 
-    private Collection<Set<Character>> forms = new LinkedList<>();
+    private List<Set<Character>> forms = new LinkedList<>();
 
     public void addForm(Set<Character> form) {
         this.forms.add(form);
@@ -32,12 +30,11 @@ public class CustomFormGroup {
         if (forms.isEmpty()) {
             throw new IllegalStateException("Form group is empty");
         }
-        Iterator<Set<Character>> formIterator = forms.iterator();
-        Set<Character> intersect = formIterator.next();
-        while (formIterator.hasNext()){
-            intersect = Sets.intersection(intersect, formIterator.next());
-        }
-        return intersect;
+        return forms.stream().reduce(
+            new HashSet<>(forms.get(0)),
+            (form1, form2) ->
+            {form1.retainAll(form2);
+                return form1;});
     }
 
     public int size() {
