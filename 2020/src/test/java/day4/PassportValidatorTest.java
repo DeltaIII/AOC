@@ -13,6 +13,7 @@ import util.InputFileReader;
 class PassportValidatorTest {
 
     public static final String DAY_4_TEST_DATA_TXT = "day4/testData.txt";
+    public static final String INPUT_TXT = "day4/input.txt";
 
     @Test
     void isValid_part1_testData() throws IOException {
@@ -31,7 +32,7 @@ class PassportValidatorTest {
 
     @Test
     void isValid_part1() throws IOException {
-        Stream<String> testData = InputFileReader.readStrings("day4/input.txt");
+        Stream<String> testData = InputFileReader.readStrings(INPUT_TXT);
 
         Collection<Passport> passports = PassportBatchParser.parse(testData);
 
