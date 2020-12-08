@@ -6,10 +6,9 @@ import day8.instruction.JumpPointer;
 import day8.program.HaltReason;
 import day8.program.ProgramResult;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class BootInstructionFixer {
+public class JumpInstructionFixer {
 
     public static ProgramResult getFixedInstructions(final List<Instruction> originalInstructions) {
         Computer computer = new Computer();

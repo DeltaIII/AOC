@@ -5,7 +5,6 @@ import static org.assertj.core.api.BDDAssertions.then;
 import day8.instruction.Instruction;
 import day8.instruction.InstructionParser;
 import day8.program.HaltReason;
-import day8.program.ProgramMemory;
 import day8.program.ProgramResult;
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import util.InputFileReader;
 
-class BootInstructionFixerTest {
+class JumpInstructionFixerTest {
 
     private static final String TEST_DATA = "day8/testData.txt";
     private static final String INPUT = "day8/input.txt";
@@ -25,7 +24,7 @@ class BootInstructionFixerTest {
             InputFileReader.readObjects(TEST_DATA, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        ProgramResult programResult = BootInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = JumpInstructionFixer.getFixedInstructions(instructions);
 
         // Then
         then(programResult).isNotNull();
@@ -39,7 +38,7 @@ class BootInstructionFixerTest {
             InputFileReader.readObjects(INPUT, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        ProgramResult programResult = BootInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = JumpInstructionFixer.getFixedInstructions(instructions);
 
         // Then
         then(programResult).isNotNull();
