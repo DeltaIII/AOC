@@ -1,10 +1,12 @@
 package day8;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.jupiter.api.Assertions.*;
 
-import day8.instruction.BootInstruction;
-import day8.instruction.BootInstructionParser;
+import day8.instruction.Instruction;
+import day8.instruction.InstructionParser;
+import day8.program.HaltReason;
+import day8.program.ProgramMemory;
+import day8.program.ProgramResult;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,29 +21,29 @@ class BootInstructionFixerTest {
     @Test
     void testGetFixedInstructions_testData() throws IOException {
         // Given
-        final List<BootInstruction> instructions =
-            InputFileReader.readObjects(TEST_DATA, BootInstructionParser::parse).collect(Collectors.toList());
+        final List<Instruction> instructions =
+            InputFileReader.readObjects(TEST_DATA, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        Memory fixedMemory = BootInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = BootInstructionFixer.getFixedInstructions(instructions);
 
         // Then
-        then(fixedMemory).isNotNull();
-        then(fixedMemory.isEndOfMemory()).isTrue();
-        then(fixedMemory.getAccumulator()).isEqualTo(8);
+        then(programResult).isNotNull();
+        then(programResult.getHaltReason()).isSameAs(HaltReason.END_OF_PROGRAM);
+        then(programResult.getAccumulatorResult()).isEqualTo(8);
     }
     @Test
     void testGetFixedInstructions_part2Input() throws IOException {
         // Given
-        final List<BootInstruction> instructions =
-            InputFileReader.readObjects(INPUT, BootInstructionParser::parse).collect(Collectors.toList());
+        final List<Instruction> instructions =
+            InputFileReader.readObjects(INPUT, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        Memory fixedMemory = BootInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = BootInstructionFixer.getFixedInstructions(instructions);
 
         // Then
-        then(fixedMemory).isNotNull();
-        then(fixedMemory.isEndOfMemory()).isTrue();
-        then(fixedMemory.getAccumulator()).isEqualTo(1375);
+        then(programResult).isNotNull();
+        then(programResult.getHaltReason()).isSameAs(HaltReason.END_OF_PROGRAM);
+        then(programResult.getAccumulatorResult()).isEqualTo(1375);
     }
 }

@@ -4,10 +4,10 @@ import day8.program.HaltReason;
 import day8.program.ProgramMemory;
 import java.util.Optional;
 
-public class NoOperation implements Instruction {
+public class EndProgram  implements Instruction {
 
     @Override
     public Optional<HaltReason> apply(final ProgramMemory programMemory) {
-        return programMemory.incrementAddress(1);
+        return Optional.of(HaltReason.END_OF_PROGRAM);
     }
 }

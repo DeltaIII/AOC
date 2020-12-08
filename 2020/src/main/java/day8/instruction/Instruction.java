@@ -1,12 +1,9 @@
 package day8.instruction;
 
-import day8.Memory;
-import java.util.function.Consumer;
+import day8.program.HaltReason;
+import day8.program.ProgramMemory;
+import java.util.Optional;
+import java.util.function.Function;
 
-public interface Instruction extends Consumer<Memory> {
-
-    int getTimesRun();
-
-    void reset();
-
+public interface Instruction  extends Function<ProgramMemory, Optional<HaltReason>> {
 }

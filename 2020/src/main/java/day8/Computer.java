@@ -1,32 +1,17 @@
 package day8;
 
 import day8.instruction.Instruction;
+import day8.program.Program;
+import day8.program.ProgramResult;
+import day8.program.ProgramMemory;
+import day8.program.SingleRunProgram;
+import java.util.List;
 
 public class Computer {
 
-    private final Memory memory;
-
-    public Computer(final Memory memory) {
-        this.memory = memory;
-    }
-
-    public Memory getMemory() {
-        return memory;
-    }
-
-    public BootResult attemptBoot() {
-        boolean bootValid = true;
-        boolean instructionsComplete = false;
-        while (bootValid && !instructionsComplete) {
-            Instruction nextInstruction = memory.getNextInstruction();
-            if (nextInstruction.getTimesRun() > 0) {
-                bootValid = false;
-                break;
-            }
-            nextInstruction.accept(memory);
-            instructionsComplete = memory.isEndOfMemory();
-        }
-        return new BootResult(bootValid, instructionsComplete);
+    public ProgramResult runProgramToCompletion(List<Instruction> programInstructions) {
+        Program program = new SingleRunProgram(programInstructions);
+        return program.run();
     }
 
 }

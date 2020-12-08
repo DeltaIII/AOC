@@ -1,13 +1,16 @@
 package day8;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.jupiter.api.Assertions.*;
 
-import day8.instruction.BootInstruction;
-import day8.instruction.BootInstructionParser;
 import day8.instruction.Instruction;
+import day8.instruction.InstructionParser;
+import day8.program.ErrorDump;
+import day8.program.HaltReason;
+import day8.program.ProgramResult;
+import day8.program.ProgramMemory;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import util.InputFileReader;
@@ -20,36 +23,39 @@ class ComputerTest {
     @Test
     void testAttemptBoot_testData() throws IOException {
         // Given
-        final List<BootInstruction> instructions =
-            InputFileReader.readObjects(TEST_DATA, BootInstructionParser::parse).collect(Collectors.toList());
-        final Computer computer = new Computer(new Memory(instructions));
+        final List<Instruction> instructions =
+            InputFileReader.readObjects(TEST_DATA, InstructionParser::parse).collect(Collectors.toList());
+        final Computer computer = new Computer();
 
         // When
-        BootResult bootResult = computer.attemptBoot();
+        ProgramResult programResult = computer.runProgramToCompletion(instructions);
 
         // Then
-        then(bootResult).isNotNull();
-        then(bootResult.isValidBoot()).isFalse();
-        then(bootResult.isInstructionsComplete()).isFalse();
-        then(computer.getMemory().getAccumulator()).isEqualTo(5);
-        then(computer.getMemory().getPointerAddress()).isEqualTo(1);
+        then(programResult).isNotNull();
+        then(programResult.getHaltReason()).isSameAs(HaltReason.REPEATED_INSTRUCTION);
+        then(programResult.getAccumulatorResult()).isEqualTo(5);
+        Optional<ErrorDump> errorDump = programResult.getErrorDump();
+        then(errorDump).isPresent();
+        then(errorDump.get().getInstructionNumber()).isEqualTo(1);
     }
 
     @Test
     void testAttemptBoot_part1Input() throws IOException {
         // Given
-        final List<BootInstruction> instructions =
-            InputFileReader.readObjects(INPUT, BootInstructionParser::parse).collect(Collectors.toList());
-        final Computer computer = new Computer(new Memory(instructions));
+        final List<Instruction> instructions =
+            InputFileReader.readObjects(INPUT, InstructionParser::parse).collect(Collectors.toList());
+        final Computer computer = new Computer();
 
         // When
-        BootResult bootResult = computer.attemptBoot();
+        ProgramResult programResult = computer.runProgramToCompletion(instructions);
+
 
         // Then
-        then(bootResult).isNotNull();
-        then(bootResult.isValidBoot()).isFalse();
-        then(bootResult.isInstructionsComplete()).isFalse();
-        then(computer.getMemory().getAccumulator()).isEqualTo(1548);
-        then(computer.getMemory().getPointerAddress()).isEqualTo(448);
+        then(programResult).isNotNull();
+        then(programResult.getHaltReason()).isSameAs(HaltReason.REPEATED_INSTRUCTION);
+        then(programResult.getAccumulatorResult()).isEqualTo(1548);
+        Optional<ErrorDump> errorDump = programResult.getErrorDump();
+        then(errorDump).isPresent();
+        then(errorDump.get().getInstructionNumber()).isEqualTo(448);
     }
 }

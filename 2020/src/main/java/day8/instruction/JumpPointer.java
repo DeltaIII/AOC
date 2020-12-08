@@ -1,9 +1,10 @@
 package day8.instruction;
 
-import day8.Memory;
-import java.util.function.Consumer;
+import day8.program.HaltReason;
+import day8.program.ProgramMemory;
+import java.util.Optional;
 
-public class JumpPointer implements Consumer<Memory> {
+public class JumpPointer implements Instruction {
 
     private final int toJump;
 
@@ -12,7 +13,7 @@ public class JumpPointer implements Consumer<Memory> {
     }
 
     @Override
-    public void accept(final Memory memory) {
-        memory.incrementAddress(toJump);
+    public Optional<HaltReason> apply(final ProgramMemory programMemory) {
+        return programMemory.incrementAddress(toJump);
     }
 }
