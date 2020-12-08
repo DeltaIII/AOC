@@ -8,9 +8,9 @@ import day8.program.ProgramResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JumpInstructionFixer {
+public class JumpInstructionCorruptionFixer {
 
-    public static ProgramResult getFixedInstructions(final List<Instruction> originalInstructions) {
+    public static ProgramResult getCorrectedResult(final List<Instruction> originalInstructions) {
         Computer computer = new Computer();
         ProgramResult programResult = computer.runProgramToCompletion(originalInstructions);
         if (isProgramSuccessful(programResult)) {

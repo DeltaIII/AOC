@@ -12,19 +12,19 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import util.InputFileReader;
 
-class JumpInstructionFixerTest {
+class JumpInstructionCorruptionFixerTest {
 
     private static final String TEST_DATA = "day8/testData.txt";
     private static final String INPUT = "day8/input.txt";
 
     @Test
-    void testGetFixedInstructions_testData() throws IOException {
+    void testGetCorrectedResult_testData() throws IOException {
         // Given
         final List<Instruction> instructions =
             InputFileReader.readObjects(TEST_DATA, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        ProgramResult programResult = JumpInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = JumpInstructionCorruptionFixer.getCorrectedResult(instructions);
 
         // Then
         then(programResult).isNotNull();
@@ -32,13 +32,13 @@ class JumpInstructionFixerTest {
         then(programResult.getAccumulatorResult()).isEqualTo(8);
     }
     @Test
-    void testGetFixedInstructions_part2Input() throws IOException {
+    void testGetCorrectedResult_part2Input() throws IOException {
         // Given
         final List<Instruction> instructions =
             InputFileReader.readObjects(INPUT, InstructionParser::parse).collect(Collectors.toList());
 
         // When
-        ProgramResult programResult = JumpInstructionFixer.getFixedInstructions(instructions);
+        ProgramResult programResult = JumpInstructionCorruptionFixer.getCorrectedResult(instructions);
 
         // Then
         then(programResult).isNotNull();
