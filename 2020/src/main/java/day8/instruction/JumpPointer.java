@@ -13,6 +13,11 @@ public class JumpPointer implements Instruction {
     }
 
     @Override
+    public int getSteps() {
+        return toJump;
+    }
+
+    @Override
     public Optional<HaltReason> apply(final ProgramMemory programMemory) {
         return programMemory.incrementAddress(toJump);
     }

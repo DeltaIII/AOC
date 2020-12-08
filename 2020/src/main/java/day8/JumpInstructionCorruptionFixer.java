@@ -3,6 +3,7 @@ package day8;
 import day8.instruction.Instruction;
 import day8.instruction.Instructions;
 import day8.instruction.JumpPointer;
+import day8.instruction.NoOperation;
 import day8.program.HaltReason;
 import day8.program.ProgramResult;
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class JumpInstructionCorruptionFixer {
 
         for (int index = 0; index < originalInstructions.size(); index++) {
             Instruction instruction = originalInstructions.get(index);
-            if (instruction instanceof JumpPointer) {
-                programResult = attemptSubstitution(originalInstructions, index, computer);
+            if (instruction instanceof JumpPointer || instruction instanceof NoOperation) {
+                programResult = attemptSubstitution(originalInstructions, index, instruction, computer);
                 if (isProgramSuccessful(programResult)) {
                     return programResult;
                 }
@@ -32,9 +33,14 @@ public class JumpInstructionCorruptionFixer {
 
     private static ProgramResult attemptSubstitution(final List<Instruction> originalInstructions,
                                                      final int index,
+                                                     final Instruction instructionToSubstitute,
                                                      final Computer computer) {
         final List<Instruction> changedInstructions = new ArrayList<>(originalInstructions);
-        changedInstructions.set(index, Instructions.noProcess(0));
+        if (instructionToSubstitute instanceof JumpPointer) {
+            changedInstructions.set(index, Instructions.noProcess(instructionToSubstitute.getSteps()));
+        } else {
+            changedInstructions.set(index, Instructions.jump(instructionToSubstitute.getSteps()));
+        }
         return computer.runProgramToCompletion(changedInstructions);
     }
 

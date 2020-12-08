@@ -10,4 +10,9 @@ public class EndProgram  implements Instruction {
     public Optional<HaltReason> apply(final ProgramMemory programMemory) {
         return Optional.of(HaltReason.END_OF_PROGRAM);
     }
+
+    @Override
+    public int getSteps() {
+        throw new IllegalAccessError("Do not use.");
+    }
 }

@@ -14,6 +14,11 @@ public class Accumulate implements Instruction {
     }
 
     @Override
+    public int getSteps() {
+        return toAccumulate;
+    }
+
+    @Override
     public synchronized Optional<HaltReason> apply(final ProgramMemory programMemory) {
         programMemory.updateAccumulator(toAccumulate);
         return programMemory.incrementAddress(1);

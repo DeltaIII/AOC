@@ -1,7 +1,5 @@
 package day8.instruction;
 
-import day8.program.ProgramMemory;
-
 public class Instructions {
 
     public static Instruction accumulate(final int accumulateSteps) {
@@ -12,7 +10,7 @@ public class Instructions {
         return new JumpPointer(jumpSteps);
     }
 
-    public static Instruction noProcess(final int unused) {
-        return new NoOperation();
+    public static Instruction noProcess(final int steps) {
+        return new NoOperation(steps);
     }
 }
