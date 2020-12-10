@@ -41,10 +41,12 @@ public class JoltageChainPossibilityCounter {
         for (int index = 0; index < differences.length; index++) {
             int difference = differences[index];
             if (difference >= maxStepSize || index == differences.length - 1) {
-                Long possiblePermutations = subsetCombinations.computeIfAbsent(
+
+                // Use existing subset calculation if possible
+                totalPermutations *=
+                    subsetCombinations.computeIfAbsent(
                     currentSubSet,
                     this::getNumberOfPossibleSubsetPermutations);
-                totalPermutations *= possiblePermutations;
 
                 currentSubSet = new ArrayList<>();
             } else {
@@ -55,6 +57,7 @@ public class JoltageChainPossibilityCounter {
         return totalPermutations;
     }
 
+    // Generalised for any step size, not just step size 1
     private Long getNumberOfPossibleSubsetPermutations(final List<Integer> diffSubset) {
 
         long[] possibleRoutes = new long[diffSubset.size() + 1];
