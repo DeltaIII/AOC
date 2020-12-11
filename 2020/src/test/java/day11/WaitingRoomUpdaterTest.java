@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import util.InputFileReader;
@@ -55,7 +56,9 @@ class WaitingRoomUpdaterTest {
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART1_RULES, waitingRoom);
 
         // When
+        long start = System.nanoTime();
         SeatState[][] seatStates = updater.reachEquilibrium();
+        System.out.println("Part 1, testData = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start) + "μs");
 
         // Then
         then(seatStates).isNotNull();
@@ -72,7 +75,9 @@ class WaitingRoomUpdaterTest {
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART1_RULES, waitingRoom);
 
         // When
+        long start = System.nanoTime();
         SeatState[][] seatStates = updater.reachEquilibrium();
+        System.out.println("Part 1, Full = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start)/1000.0 + "ms");
 
         // Then
         then(seatStates).isNotNull();
@@ -91,7 +96,9 @@ class WaitingRoomUpdaterTest {
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART2_RULES, waitingRoom);
 
         // When
+        long start = System.nanoTime();
         SeatState[][] seatStates = updater.reachEquilibrium();
+        System.out.println("Part 2, testData = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start) + "μs");
 
         // Then
         then(seatStates).isNotNull();
@@ -108,7 +115,9 @@ class WaitingRoomUpdaterTest {
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART2_RULES, waitingRoom);
 
         // When
+        long start = System.nanoTime();
         SeatState[][] seatStates = updater.reachEquilibrium();
+        System.out.println("Part 2, Full = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start)/1000.0 + "ms");
 
         // Then
         then(seatStates).isNotNull();
