@@ -26,13 +26,14 @@ public class WaitingRoomUpdater {
         while (!inEquilibrium) {
             iteration++;
             SeatState[][] oldState = history.get(iteration - 1);
-
+            boolean anyChange = false;
             WaitingRoomBuilder newStateBuilder = new WaitingRoomBuilder(this.width, this.height);
             for (int x = 1; x <= this.width ; x++) {
                 for (int y = 1; y <= this.height; y++) {
                     SeatRule seatRule = updateRules.get(oldState[y][x]);
                     SeatState updatedState = seatRule.getUpdatedState(oldState, x, y);
                     newStateBuilder.addState(updatedState, x, y);
+                    anyChange = anyChange || oldState[y][x] != updatedState;
                 }
             }
 
@@ -44,9 +45,7 @@ public class WaitingRoomUpdater {
 //                System.out.println(Arrays.stream(seatStateArray)
 //                    .map(SeatState::getCharacter).collect(Collectors.joining())));
 
-            inEquilibrium = Arrays.deepEquals(
-                history.get(iteration),
-                history.get(iteration - 1));
+            inEquilibrium = !anyChange;
         }
         return history.get(iteration);
     }
