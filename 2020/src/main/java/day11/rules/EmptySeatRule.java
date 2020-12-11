@@ -1,6 +1,7 @@
 package day11.rules;
 
 import day11.SeatState;
+import day11.Tile;
 import day11.finder.NextSeatFinder;
 
 public class EmptySeatRule extends OccupiedNumberBasedSeatRule {
@@ -11,13 +12,12 @@ public class EmptySeatRule extends OccupiedNumberBasedSeatRule {
     }
 
     @Override
-    public SeatState getUpdatedState(final SeatState[][] originalStates,
-                                     final int x,
-                                     final int y) {
-        if (originalStates[y][x] != SeatState.EMPTY) {
+    public SeatState getUpdatedState(final Tile[][] originalStates,
+                                     final Tile tile) {
+        if (originalStates[tile.getYOrdinate()][tile.getXOrdinate()].getState() != SeatState.EMPTY) {
             throw new IllegalArgumentException("Invalid coordinates for rule");
         }
-        if (this.countNextOccupiedSeats(originalStates, x, y) == 0) {
+        if (this.countNextOccupiedSeats(originalStates, tile) == 0) {
             return SeatState.OCCUPIED;
         }
         return SeatState.EMPTY;

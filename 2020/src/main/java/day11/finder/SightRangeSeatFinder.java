@@ -1,12 +1,13 @@
 package day11.finder;
 
 import day11.SeatState;
+import day11.Tile;
 import java.util.Optional;
 
 public class SightRangeSeatFinder implements NextSeatFinder {
 
     @Override
-    public Optional<SeatState> findSeat(final SeatState[][] room,
+    public Optional<SeatState> findSeat(final Tile[][] room,
                                         final int x,
                                         final int y,
                                         final Direction direction) {
@@ -16,7 +17,7 @@ public class SightRangeSeatFinder implements NextSeatFinder {
         while (canSee) {
             nextX += direction.getDx();
             nextY += direction.getDy();
-            SeatState nextVisibleState = room[nextY][nextX];
+            SeatState nextVisibleState = room[nextY][nextX].getState();
             if (isStateOutOfBounds(nextVisibleState)) {
                 canSee = false;
             } else if (isASeat(nextVisibleState)) {

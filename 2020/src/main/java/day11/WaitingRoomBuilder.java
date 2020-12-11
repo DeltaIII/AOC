@@ -3,29 +3,29 @@ package day11;
 
 public class WaitingRoomBuilder {
 
-    private final SeatState[][] states;
+    private final Tile[][] states;
 
     public WaitingRoomBuilder(final int width, final int height) {
-        this.states = new SeatState[height + 2][width + 2];
+        this.states = new Tile[height + 2][width + 2];
 
         // Apply left and right boundaries
         for (int j = 0; j < states.length; j++){
-            states[j][0] = SeatState.OUT_OF_BOUNDS;
-            states[j][width + 1] = SeatState.OUT_OF_BOUNDS;
+            states[j][0] = new Tile(SeatState.OUT_OF_BOUNDS, 0, j);
+            states[j][width + 1] = new Tile(SeatState.OUT_OF_BOUNDS, width + 1, j);
         }
 
         // Apply top and bottom boundaries
         for (int i = 0; i < states[0].length; i++) {
-            states[0][i] = SeatState.OUT_OF_BOUNDS;
-            states[height + 1][i] = SeatState.OUT_OF_BOUNDS;
+            states[0][i] = new Tile(SeatState.OUT_OF_BOUNDS, i, 0);
+            states[height + 1][i] = new Tile(SeatState.OUT_OF_BOUNDS, i, height + 1);
         }
     }
 
-    public void addState(SeatState state, int x, int y) {
-        states[y][x] = state;
+    public void addTile(SeatState state, int x, int y) {
+        states[y][x] = new Tile(state, x, y);
     }
 
-    public SeatState[][] build() {
+    public Tile[][] build() {
         return states;
     }
 

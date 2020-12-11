@@ -52,12 +52,12 @@ class WaitingRoomUpdaterTest {
         List<List<SeatState>> parsedInput = InputFileReader
             .readObjects(TEST_DATA, SeatStateParser::parse)
             .collect(Collectors.toList());
-        SeatState[][] waitingRoom = buildWaitingRoom(parsedInput);
+        Tile[][] waitingRoom = buildWaitingRoom(parsedInput);
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART1_RULES, waitingRoom);
 
         // When
         long start = System.nanoTime();
-        SeatState[][] seatStates = updater.reachEquilibrium();
+        Tile[][] seatStates = updater.reachEquilibrium();
         System.out.println("Part 1, testData = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start) + "μs");
 
         // Then
@@ -71,12 +71,12 @@ class WaitingRoomUpdaterTest {
         List<List<SeatState>> parsedInput = InputFileReader
             .readObjects(INPUT, SeatStateParser::parse)
             .collect(Collectors.toList());
-        SeatState[][] waitingRoom = buildWaitingRoom(parsedInput);
+        Tile[][] waitingRoom = buildWaitingRoom(parsedInput);
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART1_RULES, waitingRoom);
 
         // When
         long start = System.nanoTime();
-        SeatState[][] seatStates = updater.reachEquilibrium();
+        Tile[][] seatStates = updater.reachEquilibrium();
         System.out.println("Part 1, Full = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start)/1000.0 + "ms");
 
         // Then
@@ -92,12 +92,12 @@ class WaitingRoomUpdaterTest {
         List<List<SeatState>> parsedInput = InputFileReader
             .readObjects(TEST_DATA, SeatStateParser::parse)
             .collect(Collectors.toList());
-        SeatState[][] waitingRoom = buildWaitingRoom(parsedInput);
+        Tile[][] waitingRoom = buildWaitingRoom(parsedInput);
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART2_RULES, waitingRoom);
 
         // When
         long start = System.nanoTime();
-        SeatState[][] seatStates = updater.reachEquilibrium();
+        Tile[][] seatStates = updater.reachEquilibrium();
         System.out.println("Part 2, testData = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start) + "μs");
 
         // Then
@@ -111,12 +111,12 @@ class WaitingRoomUpdaterTest {
         List<List<SeatState>> parsedInput = InputFileReader
             .readObjects(INPUT, SeatStateParser::parse)
             .collect(Collectors.toList());
-        SeatState[][] waitingRoom = buildWaitingRoom(parsedInput);
+        Tile[][] waitingRoom = buildWaitingRoom(parsedInput);
         WaitingRoomUpdater updater = new WaitingRoomUpdater(PART2_RULES, waitingRoom);
 
         // When
         long start = System.nanoTime();
-        SeatState[][] seatStates = updater.reachEquilibrium();
+        Tile[][] seatStates = updater.reachEquilibrium();
         System.out.println("Part 2, Full = Time take = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start)/1000.0 + "ms");
 
         // Then
@@ -124,19 +124,19 @@ class WaitingRoomUpdaterTest {
         then(sumOccupied(seatStates)).isEqualTo(2119);
     }
 
-    private long sumOccupied(final SeatState[][] seatStates) {
-        return Arrays.stream(seatStates).map(seatStateArray -> Arrays.stream(seatStateArray)
-                .filter(s -> s == SeatState.OCCUPIED).count())
+    private long sumOccupied(final Tile[][] roomTiles) {
+        return Arrays.stream(roomTiles).map(tileArray -> Arrays.stream(tileArray)
+                .filter(t -> t.getState() == SeatState.OCCUPIED).count())
             .reduce(0L, Long::sum);
     }
 
-    private SeatState[][] buildWaitingRoom(final List<List<SeatState>> parsedInput) {
+    private Tile[][] buildWaitingRoom(final List<List<SeatState>> parsedInput) {
         int height = parsedInput.size();
         int width = parsedInput.get(0).size();
         WaitingRoomBuilder builder = new WaitingRoomBuilder(width, height);
         for (int x = 1; x <= width; x++) {
             for (int y = 1; y <= height; y++) {
-                builder.addState(parsedInput.get(y - 1).get(x - 1), x, y);
+                builder.addTile(parsedInput.get(y - 1).get(x - 1), x, y);
             }
         }
         return builder.build();
