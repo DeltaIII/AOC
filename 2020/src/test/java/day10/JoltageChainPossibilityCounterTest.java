@@ -21,7 +21,8 @@ class JoltageChainPossibilityCounterTest {
         JoltageChainPossibilityCounter counter = new JoltageChainPossibilityCounter(3);
 
         // When
-        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutations(chain);
+        counter.getNumberOfPossiblePermutations(chain);
+        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutationsDynamicProgramming(chain);
 
         // Then
         then(numberOfPossiblePermutations).isEqualTo(8);
@@ -35,7 +36,8 @@ class JoltageChainPossibilityCounterTest {
         JoltageChainPossibilityCounter counter = new JoltageChainPossibilityCounter(3);
 
         // When
-        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutations(chain);
+        counter.getNumberOfPossiblePermutations(chain);
+        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutationsDynamicProgramming(chain);
 
         // Then
         then(numberOfPossiblePermutations).isEqualTo(19208);
@@ -51,7 +53,8 @@ class JoltageChainPossibilityCounterTest {
         JoltageChainPossibilityCounter counter = new JoltageChainPossibilityCounter(3);
 
         // When
-        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutations(chain);
+        counter.getNumberOfPossiblePermutations(chain);
+        long numberOfPossiblePermutations = counter.getNumberOfPossiblePermutationsDynamicProgramming(chain);
 
         // Then
         then(numberOfPossiblePermutations).isEqualTo(4049565169664L);

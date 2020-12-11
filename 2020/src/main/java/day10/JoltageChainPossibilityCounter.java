@@ -3,6 +3,7 @@ package day10;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
@@ -74,5 +75,33 @@ public class JoltageChainPossibilityCounter {
         return possibleRoutes[possibleRoutes.length - 1];
     }
 
+    /**
+     * Based on Jamie Kelly's solution in Rust. Very neat, but roughly 5-10 times slower using the puzzle input
+     */
+    public long getNumberOfPossiblePermutationsDynamicProgramming(final JoltageAdapterChain chain) {
+        long start = System.nanoTime();
+        SortedSet<Integer> adapters = chain.getAdapters();
+        if (adapters.size() <= MINIMUM_CHAIN_LENGTH) {
+            return 1;
+        }
+
+        Iterator<Integer> inputIterator = adapters.iterator();
+        Map<Integer, Long> subchainPossibleSteps = new HashMap<>();
+        subchainPossibleSteps.put(inputIterator.next(), 1L);
+        while (inputIterator.hasNext()) {
+            Integer nextAdapter = inputIterator.next();
+            pruneDistantSteps(subchainPossibleSteps, nextAdapter);
+            subchainPossibleSteps.put(nextAdapter, subchainPossibleSteps.values().stream().reduce(0L, Long::sum));
+        }
+        System.out.println("Time 2 = " + TimeUnit.NANOSECONDS.toMicros(System.nanoTime()-start) + "micro seconds");
+        return subchainPossibleSteps.get(adapters.last());
+    }
+
+    private void pruneDistantSteps(final Map<Integer, Long> subchainPossibleSteps,
+                                   final Integer nextAdapter) {
+        subchainPossibleSteps.keySet()
+            .removeIf(otherAdapter ->  nextAdapter > otherAdapter + maxStepSize);
+
+    }
 
 }
