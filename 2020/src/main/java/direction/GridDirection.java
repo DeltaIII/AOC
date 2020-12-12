@@ -1,6 +1,6 @@
-package day11.finder;
+package direction;
 
-public enum Direction {
+public enum GridDirection {
     NORTH_WEST(-1, -1),
     WEST(-1, 0),
     SOUTH_WEST(-1, +1),
@@ -13,7 +13,7 @@ public enum Direction {
     private final int dx;
     private final int dy;
 
-    Direction(final int dx, final int dy) {
+    GridDirection(final int dx, final int dy) {
         this.dx = dx;
         this.dy = dy;
     }

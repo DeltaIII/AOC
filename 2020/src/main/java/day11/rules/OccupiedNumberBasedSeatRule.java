@@ -2,7 +2,7 @@ package day11.rules;
 
 import day11.SeatState;
 import day11.Tile;
-import day11.finder.Direction;
+import direction.GridDirection;
 import day11.finder.NextSeatFinder;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,9 +29,9 @@ public abstract class OccupiedNumberBasedSeatRule implements SeatRule{
     private Collection<SeatState> getNextSeatStates(final Tile[][] originalStates,
                                                     final Tile tile) {
         List<Optional<SeatState>> nextSeatStates = new ArrayList<>();
-        for (Direction direction : Direction.values()) {
+        for (GridDirection gridDirection : GridDirection.values()) {
             nextSeatStates.add(
-                seatFinder.findSeat(originalStates, tile.getXOrdinate(), tile.getYOrdinate(), direction));
+                seatFinder.findSeat(originalStates, tile.getXOrdinate(), tile.getYOrdinate(), gridDirection));
         }
         return nextSeatStates.stream()
             .filter(Optional::isPresent).map(Optional::get)
