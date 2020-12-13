@@ -5,7 +5,7 @@ import java.util.SortedSet;
 
 public class BusConstraintSolver {
 
-    public static long getEarliestSolutionTime(final SortedSet<BusConstraint> constraints, long initialGuess) {
+    public static long getEarliestSolutionTime_iterativeSearch(final SortedSet<BusConstraint> constraints, long initialGuess) {
         long start = System.nanoTime();
         Iterator<BusConstraint> iterator = constraints.iterator();
         final BusConstraint firstConstraint = iterator.next();
@@ -20,7 +20,7 @@ public class BusConstraintSolver {
             increment = getLowestCommonMultiplier(increment, constraint.getBusId());
         }
 
-        System.out.println("Time = " + ((System.nanoTime() - start)/1000000.0) + "ms");
+        System.out.println("Time alg 1 = " + ((System.nanoTime() - start)/1000000.0) + "ms");
         return solutionTimeStamp;
     }
 
@@ -43,5 +43,52 @@ public class BusConstraintSolver {
             divisor = remainder;
         } while (divisor != 0);
         return gcd;
+    }
+
+
+    public static long getEarliestSolutionTime_chineseRemainderTheorem(final SortedSet<BusConstraint> constraints) {
+        long start = System.nanoTime();
+        long productOfAllDivisors = 1;
+        for (BusConstraint constraint : constraints) {
+            productOfAllDivisors *= constraint.getBusId();
+        }
+        long sum = 0;
+        for (BusConstraint constraint : constraints) {
+            if (constraint.getConstraintMinutes() == 0) {
+                continue;
+            }
+            long remainder = constraint.getBusId() - constraint.getConstraintMinutes();
+            long modulo = constraint.getBusId();
+            long productOfOtherDivisors = productOfAllDivisors / modulo;
+            long moduloInverseOfOtherDivisors = inverseModulo(productOfOtherDivisors % modulo, modulo);
+
+            long term = remainder * productOfOtherDivisors * moduloInverseOfOtherDivisors;
+            sum += term;
+        }
+        long solution = sum % productOfAllDivisors;
+        System.out.println("Time alg 2 = " + ((System.nanoTime() - start)/1000000.0) + "ms");
+        return solution;
+    }
+
+    private static long inverseModulo(final long a, final long m) {
+        long y = 0;
+        long x = 1;
+        long mi = m;
+        long ai = a;
+        while (ai > 1) {
+            long quotient = ai/mi;
+
+            long temp = mi;
+            mi = ai % mi;
+            ai = temp;
+
+            temp = y;
+            y = x - quotient * y;
+            x = temp;
+        }
+        if (x < 0) {
+            x += m;
+        }
+        return x;
     }
 }

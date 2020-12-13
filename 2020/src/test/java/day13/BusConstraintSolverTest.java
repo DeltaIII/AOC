@@ -1,7 +1,6 @@
 package day13;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -37,10 +36,14 @@ class BusConstraintSolverTest {
 
         // When
         long earliestSolutionTime =
-            BusConstraintSolver.getEarliestSolutionTime(busConstraints, busConstraints.first().getBusId());
+            BusConstraintSolver.getEarliestSolutionTime_iterativeSearch(busConstraints, busConstraints.first().getBusId());
+
+        long earliestSolutionTime2 =
+            BusConstraintSolver.getEarliestSolutionTime_chineseRemainderTheorem(busConstraints);
 
         // Then
         then(earliestSolutionTime).isEqualTo(expected);
+        then(earliestSolutionTime2).isEqualTo(earliestSolutionTime);
     }
 
     @Test
@@ -50,10 +53,13 @@ class BusConstraintSolverTest {
         SortedSet<BusConstraint> busConstraints = BusConstraintParser.parse(inputs.get(1));
 
         // When
-        long earliestSolutionTime = BusConstraintSolver.getEarliestSolutionTime(busConstraints, 100000000000000L);
+        long earliestSolutionTime = BusConstraintSolver.getEarliestSolutionTime_iterativeSearch(busConstraints, 100000000000000L);
+        long earliestSolutionTime2 =
+            BusConstraintSolver.getEarliestSolutionTime_chineseRemainderTheorem(busConstraints);
 
         // Then
         then(earliestSolutionTime).isEqualTo(556100168221141L);
+        then(earliestSolutionTime2).isEqualTo(earliestSolutionTime);
 
     }
 }
