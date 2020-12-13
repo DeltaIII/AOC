@@ -14,13 +14,8 @@ public class BusConstraintSolver {
         long increment = firstConstraint.getBusId();
         while (iterator.hasNext()) {
             BusConstraint constraint = iterator.next();
-            int subIteration = 0;
             while (!constraint.isTimeValid(solutionTimeStamp)) {
                 solutionTimeStamp += increment;
-                subIteration++;
-                if (subIteration % 100 == 0) {
-                    System.out.println(String.format("Current Solution = %s; increment = %s; sub_iteration = %s; constraint = %s", solutionTimeStamp, increment, subIteration, constraint));
-                }
             }
             increment = getLowestCommonMultiplier(increment, constraint.getBusId());
         }

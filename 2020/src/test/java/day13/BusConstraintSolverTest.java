@@ -50,10 +50,10 @@ class BusConstraintSolverTest {
         SortedSet<BusConstraint> busConstraints = BusConstraintParser.parse(inputs.get(1));
 
         // When
-        long earliestSolutionTime = BusConstraintSolver.getEarliestSolutionTime(busConstraints, 556100168221141L);
+        long earliestSolutionTime = BusConstraintSolver.getEarliestSolutionTime(busConstraints, 100000000000000L);
 
         // Then
-        then(earliestSolutionTime).isEqualTo(1);
+        then(earliestSolutionTime).isEqualTo(556100168221141L);
 
     }
 }
