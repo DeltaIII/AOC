@@ -23,18 +23,13 @@ public class MemoryGame {
 
         while (currentTurn <= turnNumber) {
             int nextNumber =
-                currentNumberCounter.getTimesSeen() == 1? 0 : getDifferenceOfTurns(currentNumberCounter.getTurnsSeen());
+                currentNumberCounter.getTimesSeen() == 1? 0 : currentNumberCounter.getTurnsDifference();
             currentNumberCounter = previousTurnNumbers.computeIfAbsent(nextNumber, NumberCounter::new);
             currentNumberCounter.addTurnSeen(currentTurn);
             currentTurn++;
         }
 
         return currentNumberCounter.getNumber();
-    }
-
-    private static int getDifferenceOfTurns(final List<Integer> turnsSeen) {
-        int lastIndex = turnsSeen.size() - 1;
-        return turnsSeen.get(lastIndex) - turnsSeen.get(lastIndex - 1);
     }
 
 }

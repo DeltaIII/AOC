@@ -29,7 +29,7 @@ class MemoryGameTest {
     @MethodSource("testDataScenarios")
     void testRunToTurn_testData_shortGame(final int turnNumber, final int expectedResult) {
         // Given
-        final List<Integer> input = Arrays.asList(0,3,6);
+        final List<Integer> input = Arrays.asList(0, 3, 6);
 
         // When
         final int result = MemoryGame.runToTurn(turnNumber, input);
@@ -41,7 +41,7 @@ class MemoryGameTest {
     @Test
     void testRunToTurn_testData_fullGame() {
         // Given
-        final List<Integer> input = Arrays.asList(0,3,6);
+        final List<Integer> input = Arrays.asList(0, 3, 6);
 
         // When
         final int result = MemoryGame.runToTurn(2020, input);
@@ -57,5 +57,38 @@ class MemoryGameTest {
 
         // Then
         then(result).isEqualTo(436);
+    }
+
+    private static List<Arguments> longTestDataScenarios() {
+        final List<Arguments> scenarios = new LinkedList<>();
+        scenarios.add(Arguments.of(Arrays.asList(0, 3, 6), 175594));
+        scenarios.add(Arguments.of(Arrays.asList(1, 3, 2), 2578));
+        scenarios.add(Arguments.of(Arrays.asList(2, 1, 3), 3544142));
+        scenarios.add(Arguments.of(Arrays.asList(1, 2, 3), 261214));
+        scenarios.add(Arguments.of(Arrays.asList(2, 3, 1), 6895259));
+        scenarios.add(Arguments.of(Arrays.asList(3, 2, 1), 18));
+        scenarios.add(Arguments.of(Arrays.asList(3, 1, 2), 362));
+        return scenarios;
+    }
+
+    @ParameterizedTest
+    @MethodSource("longTestDataScenarios")
+    void testRunToTurn_testData_longGame(final List<Integer> input, final int expectedResult) {
+        // When
+        final int result = MemoryGame.runToTurn(30000000, input);
+
+        // Then
+        then(result).isEqualTo(expectedResult);
+    }
+
+
+
+    @Test
+    void testRunToTurn_part2() {
+        // When
+        final int result = MemoryGame.runToTurn(30000000, INPUT);
+
+        // Then
+        then(result).isEqualTo(1708310);
     }
 }

@@ -1,14 +1,15 @@
 package day15;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import lombok.ToString;
 
 @ToString
 public class NumberCounter {
 
-    private final List<Integer> turnsSeen = new ArrayList<>();
+    private final List<Integer> turnsSeen = new LinkedList<>();
     private final int number;
+    private int timesSeen = 0;
 
     public NumberCounter(final int number) {
         this.number = number;
@@ -19,14 +20,18 @@ public class NumberCounter {
     }
 
     public int getTimesSeen() {
-        return turnsSeen.size();
+        return timesSeen;
     }
 
     public void addTurnSeen(final int turn) {
         turnsSeen.add(turn);
+        if (turnsSeen.size() > 2) {
+            turnsSeen.remove(0);
+        }
+        timesSeen++;
     }
 
-    public List<Integer> getTurnsSeen() {
-        return turnsSeen;
+    public Integer getTurnsDifference() {
+        return turnsSeen.get(1) - turnsSeen.get(0);
     }
 }
