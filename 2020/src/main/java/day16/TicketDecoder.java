@@ -2,8 +2,10 @@ package day16;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,7 @@ public class TicketDecoder {
 
     public static Map<String, Integer> mapFieldToIndex(final Collection<TicketFieldRule> rules,
                                                        final List<List<Integer>> validTickets) {
+        long start = System.nanoTime();
         Map<String, Integer> fieldToIndexMap = new HashMap<>();
         Map<TicketFieldRule, Set<Integer>> potentialIndicesMap = getPotentialIndices(rules, validTickets);
 
@@ -22,8 +25,10 @@ public class TicketDecoder {
             getValidCombination(potentialIndicesMap, potentialIndicesMap.keySet(), new HashSet<>());
 
         if (validCombination != null) {
-            return validCombination.entrySet().stream()
+            Map<String, Integer> collect = validCombination.entrySet().stream()
                 .collect(Collectors.toMap(e -> e.getKey().getFieldName(), Map.Entry::getValue));
+            System.out.println("time = " + (System.nanoTime()-start)/1000000.0 + "ms");
+            return collect;
         }
 
         throw new IllegalArgumentException("No valid combination found :(");
@@ -68,6 +73,10 @@ public class TicketDecoder {
                 }
             }
         }
-        return potentialIndices;
+        Map<TicketFieldRule, Set<Integer>> sortedPotentialIndices = new LinkedHashMap<>();
+        potentialIndices.entrySet().stream()
+            .sorted(Comparator.comparingInt(e -> e.getValue().size()))
+            .forEach(e -> sortedPotentialIndices.put(e.getKey(), e.getValue()));
+        return sortedPotentialIndices;
     }
 }
