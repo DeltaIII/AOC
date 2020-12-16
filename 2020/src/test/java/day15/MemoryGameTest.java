@@ -5,6 +5,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -56,7 +57,7 @@ class MemoryGameTest {
         final int result = MemoryGame.runToTurn(2020, INPUT);
 
         // Then
-        then(result).isEqualTo(436);
+        then(result).isEqualTo(595);
     }
 
     private static List<Arguments> longTestDataScenarios() {
@@ -81,6 +82,20 @@ class MemoryGameTest {
         then(result).isEqualTo(expectedResult);
     }
 
+    @Test
+    @Disabled
+    void timing() {
+        long start = System.nanoTime();
+        for (int i = 0; i < 5; i++) {
+            for (Arguments longTestDataScenario : longTestDataScenarios()) {
+                List<Integer> input = (List<Integer>) longTestDataScenario.get()[0];
+                int expectedResult = (Integer) longTestDataScenario.get()[1];
+                final int result = MemoryGame.runToTurn(30000000, input);
+                then(result).isEqualTo(expectedResult);
+            }
+        }
+        System.out.println("Time = " + (System.nanoTime()-start)/1000000000.0);
+    }
 
 
     @Test

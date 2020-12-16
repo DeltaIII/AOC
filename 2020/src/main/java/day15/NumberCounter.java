@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 public class NumberCounter {
 
-    private final List<Integer> turnsSeen = new LinkedList<>();
+    private final int[] turnsSeen = new int[2];
     private final int number;
     private int timesSeen = 0;
 
@@ -24,14 +24,16 @@ public class NumberCounter {
     }
 
     public void addTurnSeen(final int turn) {
-        turnsSeen.add(turn);
-        if (turnsSeen.size() > 2) {
-            turnsSeen.remove(0);
+        if (timesSeen < 2) {
+            turnsSeen[timesSeen] = turn;
+        } else {
+            turnsSeen[0] = turnsSeen[1];
+            turnsSeen[1] = turn;
         }
         timesSeen++;
     }
 
     public Integer getTurnsDifference() {
-        return turnsSeen.get(1) - turnsSeen.get(0);
+        return turnsSeen[1] - turnsSeen[0];
     }
 }
