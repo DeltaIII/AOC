@@ -85,10 +85,6 @@ public class ActiveCubeMap3D implements ActiveCubeMap<Point3D> {
         return activeCubes;
     }
 
-    public boolean[][][] getActiveSpaces() {
-        return activeSpaces;
-    }
-
     private int convertIndex(final int raw, final int ordinateIndex) {
         return raw - lowerLimits[ordinateIndex];
     }
