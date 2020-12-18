@@ -40,6 +40,7 @@ public class ActiveCubeMap4D implements ActiveCubeMap<Point4D> {
         int xRange = upperLimits[1] - lowerLimits[1] + 1;
         int yRange = upperLimits[2] - lowerLimits[2] + 1;
         int zRange = upperLimits[3] - lowerLimits[3] + 1;
+        System.out.println(String.format("limits %s,%s,%s,%s", wRange, xRange, yRange, zRange));
         this.activeSpaces = new boolean[zRange][yRange][xRange][wRange];
         this.activeCubes = activeCubes.stream().map(Point4D::asArray).collect(Collectors.toSet());
         for (Point4D point : activeCubes) {
