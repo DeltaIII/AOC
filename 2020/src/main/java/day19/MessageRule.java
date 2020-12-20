@@ -6,7 +6,5 @@ public interface MessageRule {
 
     int getRuleNumber();
 
-    Set<String> getValidMessages(RuleSet ruleSet);
-
-    boolean isValidMessage(RuleSet ruleSet, String message);
+    String getRawPattern(RuleSet ruleSet);
 }

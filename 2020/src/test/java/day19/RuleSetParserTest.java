@@ -24,9 +24,9 @@ class RuleSetParserTest {
         RuleSet ruleSet = RuleSetParser.parse(input.collect(Collectors.toList()));
 
         // Then
-        then(ruleSet.getValidMessagesForRule(0)).isEqualTo(expectedRuleStrings0);
-        then(ruleSet.getValidMessagesForRule(1)).isEqualTo(expectedRuleStrings1);
-        then(ruleSet.getValidMessagesForRule(2)).isEqualTo(expectedRuleStrings2);
-        then(ruleSet.getValidMessagesForRule(3)).isEqualTo(expectedRuleStrings3);
+        then(ruleSet.getRawPatternForRule(0)).isEqualTo(expectedRuleStrings0);
+        then(ruleSet.getRawPatternForRule(1)).isEqualTo(expectedRuleStrings1);
+        then(ruleSet.getRawPatternForRule(2)).isEqualTo(expectedRuleStrings2);
+        then(ruleSet.getRawPatternForRule(3)).isEqualTo(expectedRuleStrings3);
     }
 }

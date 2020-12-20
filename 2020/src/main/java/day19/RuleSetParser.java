@@ -24,31 +24,19 @@ public class RuleSetParser {
         String[] keyValuePair = ruleInput.split(":");
         int ruleNumber = Integer.parseInt(keyValuePair[0]);
         String ruleDefinition = keyValuePair[1];
-        if (ruleDefinition.contains("|")) {
-            return parseCombinationRule(ruleNumber, ruleDefinition);
-        } else {
-            return parseSingleRule(ruleNumber, ruleDefinition);
-        }
-    }
-
-    private static MessageRule parseSingleRule(final int ruleNumber, final String ruleDefinition) {
         Matcher matcher = SINGLE_CHARACTER_PATTERN.matcher(ruleDefinition);
         if (matcher.matches()) {
             return new SingleCharacterRule(ruleNumber, matcher.group(1));
         } else {
-            final List<Integer> referenceRuleNumbers = new ArrayList<>();
-            for (String ruleNumberString : ruleDefinition.trim().split("\\s")) {
-                referenceRuleNumbers.add(Integer.parseInt(ruleNumberString));
+            List<List<Integer>> referenceRuleCombinations = new ArrayList<>();
+            for (String individualCombination : ruleDefinition.split("\\|")) {
+                List<Integer> referenceRuleNumbers = new ArrayList<>();
+                for (String ruleNumberString : individualCombination.trim().split("\\s")) {
+                    referenceRuleNumbers.add(Integer.parseInt(ruleNumberString));
+                }
+                referenceRuleCombinations.add(referenceRuleNumbers);
             }
-            return new CompositeRule(ruleNumber, referenceRuleNumbers);
+            return new CombinationRule(ruleNumber, referenceRuleCombinations);
         }
-    }
-
-    private static MessageRule parseCombinationRule(final int ruleNumber, final String ruleDefinition) {
-        List<MessageRule> rules = new ArrayList<>();
-        for (String individualRuleDefinintion : ruleDefinition.split("\\|")) {
-            rules.add(parseSingleRule(ruleNumber, individualRuleDefinintion));
-        }
-        return new CombinationRule(ruleNumber, rules);
     }
 }

@@ -1,16 +1,14 @@
 package day19;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class CombinationRule implements MessageRule {
+public class DuplicatePatternMessageRule implements MessageRule {
 
     private final int ruleNumber;
-    private final List<List<Integer>> ruleCombinations;
+    private final List<Integer> ruleCombinations;
 
     @Override
     public int getRuleNumber() {

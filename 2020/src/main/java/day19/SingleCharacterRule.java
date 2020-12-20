@@ -16,12 +16,8 @@ public class SingleCharacterRule implements MessageRule {
     }
 
     @Override
-    public Set<String> getValidMessages(final RuleSet ruleSet) {
-        return Collections.singleton(character);
+    public String getRawPattern(final RuleSet ruleSet) {
+        return character;
     }
 
-    @Override
-    public boolean isValidMessage(final RuleSet ruleSet, final String message) {
-        return character.equals(message);
-    }
 }
