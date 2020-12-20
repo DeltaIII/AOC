@@ -63,14 +63,13 @@ class MessageValidatorTest {
         then(count).isEqualTo(3);
 
         // Update rules
-//        ruleSet.setRule(new LoopingRule(8, Collections.singletonList(42), Arrays.asList(42, 8)));
-//        ruleSet.setRule(new LoopingRule(8, Arrays.asList(42, 31), Arrays.asList(42, 11, 31)));
-//
-//        // When
-//        final Pattern updatedMatcher = ruleSet.getRulePattern(0);
-//        long updatedCount = messages.stream().filter(m -> updatedMatcher.matcher(m).matches()).count();
-//
-//        then(updatedCount).isEqualTo(12);
+        ruleSet.setRule(new DuplicatePatternMessageRule(8, Collections.singletonList(42)));
+        ruleSet.setRule(new DuplicatePatternMessageRule(11, Arrays.asList(42, 31)));
+
+        // When
+        long updatedCount = messages.stream().filter(m -> ruleSet.isValidMessageForRule(0, m)).count();
+
+        then(updatedCount).isEqualTo(12);
 
     }
 
@@ -80,6 +79,10 @@ class MessageValidatorTest {
         List<String> data = InputFileReader.readStrings(INPUT).collect(Collectors.toList());
         RuleSet ruleSet = RuleSetParser.parse(data);
         List<String> messages = data.stream().filter(s->!s.contains(":")).collect(Collectors.toList());
+
+        // Update rules
+        ruleSet.setRule(new DuplicatePatternMessageRule(8, Collections.singletonList(42)));
+        ruleSet.setRule(new DuplicatePatternMessageRule(11, Arrays.asList(42, 31)));
 
         // When
         long count = messages.stream().filter(m -> ruleSet.isValidMessageForRule(0, m)).count();

@@ -23,7 +23,7 @@ public class CombinationRule implements MessageRule {
             .map(r -> this.getRawPatterns(ruleSet, r)).iterator();
 
         StringBuilder rawPatternBuilder = new StringBuilder();
-        rawPatternBuilder.append("(");
+        rawPatternBuilder.append("(?:");
         rawPatternBuilder.append(ruleCombinationPatterns.next());
         while (ruleCombinationPatterns.hasNext()) {
             rawPatternBuilder.append("|");

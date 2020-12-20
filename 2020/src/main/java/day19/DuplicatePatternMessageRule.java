@@ -2,13 +2,14 @@ package day19;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class DuplicatePatternMessageRule implements MessageRule {
 
     private final int ruleNumber;
-    private final List<Integer> ruleCombinations;
+    private final List<Integer> rulesThatCanRepeat;
 
     @Override
     public int getRuleNumber() {
@@ -17,22 +18,18 @@ public class DuplicatePatternMessageRule implements MessageRule {
 
     @Override
     public String getRawPattern(final RuleSet ruleSet) {
-        Iterator<String> ruleCombinationPatterns = ruleCombinations.stream()
-            .map(r -> this.getRawPatterns(ruleSet, r)).iterator();
+        List<String> ruleCombinationPatterns = rulesThatCanRepeat.stream()
+            .map(ruleSet::getRawPatternForRule).collect(Collectors.toList());
 
         StringBuilder rawPatternBuilder = new StringBuilder();
-        rawPatternBuilder.append("(");
-        rawPatternBuilder.append(ruleCombinationPatterns.next());
-        while (ruleCombinationPatterns.hasNext()) {
-            rawPatternBuilder.append("|");
-            rawPatternBuilder.append(ruleCombinationPatterns.next());
+        rawPatternBuilder.append("(?:");
+        for (String pattern : ruleCombinationPatterns) {
+            rawPatternBuilder.append(pattern);
+            rawPatternBuilder.append("+");
         }
         rawPatternBuilder.append(")");
         return rawPatternBuilder.toString();
     }
 
-    private String getRawPatterns(final RuleSet ruleSet, final List<Integer> ruleNumbers) {
-        return ruleNumbers.stream().map(ruleSet::getRawPatternForRule).reduce("", String::concat);
-    }
 
 }

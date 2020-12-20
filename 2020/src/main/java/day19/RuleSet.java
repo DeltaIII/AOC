@@ -32,11 +32,15 @@ public class RuleSet {
             .matcher(message).matches();
     }
 
+    public void setRule(final MessageRule rule) {
+        this.rules.put(rule.getRuleNumber(), rule);
+        this.rawPatterns.clear();
+        this.compiledPatterns.clear();
+    }
+
     private Pattern compilePattern(final String rawPattern) {
-        StringBuilder patternBuilder = new StringBuilder();
-        patternBuilder.append("^");
-        patternBuilder.append(rawPattern);
-        patternBuilder.append("$");
-        return Pattern.compile(patternBuilder.toString());
+        String regex = "^" + rawPattern + "$";
+        System.out.println(regex);
+        return Pattern.compile(regex);
     }
 }
